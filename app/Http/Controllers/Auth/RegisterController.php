@@ -49,10 +49,32 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            // country
             'password' => 'required|string|min:6|confirmed',
         ]);
+    }
+
+    /**
+     * Show the application registration form.
+     * (added to insert country data to the auth.register view) -jimezam
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $colombia = \App\Country::where('iso2', 'CO')->get();
+        $other = \App\Country::orderBy('name', 'asc')->get();
+
+        $countries = $colombia->merge($other)->all();
+                        ;
+
+        // $countries = array_merge(['45' => 'Colombia'], 
+        //                 \App\Country::orderBy('name', 'asc')->pluck('name', 'id')->toArray());
+
+        return view('auth.register', compact('countries'));
     }
 
     /**
@@ -63,10 +85,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user =  User::create([
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'country_id' => $data['country'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
     }
 }
