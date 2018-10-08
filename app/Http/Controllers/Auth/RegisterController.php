@@ -42,6 +42,7 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
+     * (Added rules for first/lastname and country fields) -jimezam
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -52,7 +53,7 @@ class RegisterController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            // country
+            'country' => 'required|exists:countries,id',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }

@@ -57,7 +57,7 @@
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" name="country">
+                                <select class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" id="country" name="country" required>
                                     @foreach($countries as $country)
                                         <option value="{{$country->id}}">{{$country->name}}</option>
                                     @endforeach
