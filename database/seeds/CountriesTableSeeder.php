@@ -11,6 +11,8 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('countries')->delete();
+
         App\Country::create(['name' => 'Afganistán', 'english_name' => 'Afghanistan', 'iso2' => 'AF', 'iso3' => 'AFG', 'phone_prefix' => '93']);
         App\Country::create(['name' => 'Albania', 'english_name' => 'Albania', 'iso2' => 'AL', 'iso3' => 'ALB', 'phone_prefix' => '355']);
         App\Country::create(['name' => 'Alemania', 'english_name' => 'Germany', 'iso2' => 'DE', 'iso3' => 'DEU', 'phone_prefix' => '49']);

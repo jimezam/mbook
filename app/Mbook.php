@@ -12,7 +12,7 @@ class Mbook extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id', 'name', 'description', 'state',
+        'category_id', 'name', 'shortname', 'description', 'state',
     ];
 
     public function category()
@@ -23,5 +23,12 @@ class Mbook extends Model
     public function msections()
     {
         return $this->hasMany('App\Msection');
+    }
+
+    public static function getStates()
+    {
+        return ['private' => 'private', 
+                'published' => 'published', 
+                'inactive' => 'inactive'];
     }
 }

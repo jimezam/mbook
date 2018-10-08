@@ -163,6 +163,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,             // jimezam
 
         /*
          * Application Service Providers...
@@ -222,6 +223,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Form' => Collective\Html\FormFacade::class,        // jimezam
+        'Html' => Collective\Html\HtmlFacade::class,        // jimezam
     ],
 
 ];

@@ -17,6 +17,7 @@ class CreateMbooksTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id');
+            $table->string('shortname', 13)->unique();
             $table->string('name', 100);
             $table->text('description')->nullable();
             $table->enum('state', ['private', 'published', 'inactive'])->default('private');
