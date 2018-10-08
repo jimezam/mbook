@@ -18,7 +18,13 @@ class MbookController extends Controller
      */
     public function index()
     {
-        //
+        $mbooks = Mbook::ownedByMe()->orderBy('created_at', 'desc')->paginate(10);
+
+        // Mejorar con https://www.datatables.net/
+        // https://github.com/yajra/laravel-datatables
+        // https://yajrabox.com/docs/laravel-datatables/7.0
+
+        return view('mbooks.index', compact('mbooks'));
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\Auth;
+
 class Mbook extends Model
 {
     /**
@@ -30,5 +32,27 @@ class Mbook extends Model
         return ['private' => 'private', 
                 'published' => 'published', 
                 'inactive' => 'inactive'];
+    }
+
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOwnedBy($query, $user)
+    {
+        return $query->where('user_id', '=', $user);
+    }
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+
+    public function scopeOwnedByMe($query)
+    {
+        return $query->where('user_id', '=', Auth::id());
     }
 }

@@ -89,6 +89,16 @@
         </nav>
 
         <main class="py-4">
+
+            <!-- Espacio para los mensajes flash enviados entre solicitudes -->
+            @if(Session::has('success'))
+                <div class="container">
+                    <article class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </article>
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>
