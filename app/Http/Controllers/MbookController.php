@@ -20,10 +20,6 @@ class MbookController extends Controller
     {
         $mbooks = Mbook::ownedByMe()->orderBy('updated_at', 'desc')->paginate(10);
 
-        // Mejorar con https://www.datatables.net/
-        // https://github.com/yajra/laravel-datatables
-        // https://yajrabox.com/docs/laravel-datatables/7.0
-
         return view('mbooks.index', compact('mbooks'));
     }
 
@@ -94,7 +90,7 @@ class MbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mbook $mbook)
+    public function update(MbookCreateRequest $request, Mbook $mbook)
     {
         $input = $request->all();
 
