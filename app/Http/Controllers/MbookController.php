@@ -59,7 +59,7 @@ class MbookController extends Controller
 
         return redirect()
             ->route('mbooks.index')
-            ->with('success', 'Book created successfully!');
+            ->with('success', '¡Libro creado exitosamente!');
     }
 
     /**
@@ -102,7 +102,7 @@ class MbookController extends Controller
 
         return redirect()
             ->route('mbooks.index')
-            ->with('success', 'Book edited successfully!');
+            ->with('success', '¡Libro editado exitosamente!');
     }
 
     /**
@@ -111,8 +111,12 @@ class MbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mbook $mbook)
     {
-        //
+        $mbook->delete();
+
+        return redirect()
+            ->route('mbooks.index')
+            ->with('success', '¡Libro removido exitosamente!');
     }
 }
