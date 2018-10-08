@@ -4,8 +4,9 @@
 
 <div class="container">
 
-<h1>Agregar un Libro</h1>
-<p class="lead">Especificar los datos del nuevo libro.</p>
+<h1>Editar un Libro</h1>
+<p class="lead">Especificar los nuevos datos del libro.</p>
+
 <hr>
 
 @if($errors->any())
@@ -16,7 +17,10 @@
     </div>
 @endif
 
-{!! Form::open(['route' => 'mbooks.store']) !!}
+{!! Form::model($mbook, [
+    'method' => 'PUT',
+    'route' => ['mbooks.update', $mbook->id]
+]) !!}
 
 <!-- --------------------------------- -->
 
@@ -47,7 +51,7 @@
 
 <!-- --------------------------------- -->
 
-{!! Form::submit('Crear', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Editar', ['class' => 'btn btn-info']) !!}
 <a href="{{ request()->headers->get('referer') }}" class="btn btn-secondary">Cancelar</a>
 
 {!! Form::close() !!}

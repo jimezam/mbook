@@ -18,7 +18,7 @@ class MbookController extends Controller
      */
     public function index()
     {
-        $mbooks = Mbook::ownedByMe()->orderBy('created_at', 'desc')->paginate(10);
+        $mbooks = Mbook::ownedByMe()->orderBy('updated_at', 'desc')->paginate(10);
 
         // Mejorar con https://www.datatables.net/
         // https://github.com/yajra/laravel-datatables
@@ -79,9 +79,12 @@ class MbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Mbook $mbook)
     {
-        //
+        $categories = Category::orderby('name', 'asc') -> pluck('name', 'id');
+        $states = Mbook::getStates();
+
+        return view('mbooks.edit', compact('mbook', 'categories', 'states'));
     }
 
     /**
@@ -91,9 +94,15 @@ class MbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Mbook $mbook)
     {
-        //
+        $input = $request->all();
+
+        $mbook->fill($input)->save();
+
+        return redirect()
+            ->route('mbooks.index')
+            ->with('success', 'Book edited successfully!');
     }
 
     /**
