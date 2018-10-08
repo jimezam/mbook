@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Country');
     }
     
+    public function mbooks()
+    {
+        return $this->hasMany('App\Mbook');
+    }
+
     public function getNameAttribute()
     {
         return "{$this->firstname} {$this->lastname}";

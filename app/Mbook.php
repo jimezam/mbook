@@ -17,6 +17,11 @@ class Mbook extends Model
         'category_id', 'name', 'shortname', 'description', 'state',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Category');

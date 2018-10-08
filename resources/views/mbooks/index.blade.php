@@ -33,7 +33,6 @@
             case "inactive": $stateType = "light"; break;
         }
     @endphp
-
 <tr>
     <td>
         <p class="h5">{{ $mbook->name }}</p>
@@ -48,16 +47,16 @@
     </td>
 
     <td>
-        <div class="btn-group" role="group" aria-label="Opciones">
-            <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info">Ver</a>
-            <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning">Edit User</a>
-            {!! Form::open([
-                'method' => 'DELETE',
-                'route' => ['mbooks.destroy', $mbook->id]
-            ]) !!}
-                {!! Form::submit('Remover', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
-        </div>
+        <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info" style="margin-right: 5px; float:left">Ver</a>
+        <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
+        {!! Form::open([
+            'method' => 'DELETE',
+            'route' => ['mbooks.destroy', $mbook->id],
+            'style' => 'float:left',
+            'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
+        ]) !!}
+            {!! Form::submit('Remover', ['class' => 'btn btn-danger']) !!}
+        {!! Form::close() !!}
     </td>
 </tr>
 
