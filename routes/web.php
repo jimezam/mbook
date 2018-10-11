@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('mbooks', 'MbookController');
 Route::resource('mbooks.msections', 'MsectionController');
+Route::resource('mbooks.msections.msheets', 'MsheetController');

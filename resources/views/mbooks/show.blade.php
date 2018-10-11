@@ -43,7 +43,7 @@
 </tr>
 <tr>
   <th scope="row">Descripción</th>
-  <td>{{ $mbook->description }}</td>
+  <td>{!! nl2br($mbook->description) !!}</td>
 </tr>
 <tr>
   <th scope="row">Fecha de Creación</th>

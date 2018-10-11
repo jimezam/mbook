@@ -21,10 +21,17 @@
             <p class="card-text">
                 
             </p>
-            <a href="xxx" class="btn btn-success btn-sm" style="margin-right: 5px; float:left">Contenidos</a>
-            <a href="xxx" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
-            <a href="xxx" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
-            Remover
+            <a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left">Contenidos</a>
+            <a href="{{ route('mbooks.msections.show', [$mbook, $msection]) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
+            <a href="{{ route('mbooks.msections.edit', [$mbook, $msection]) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
+            {!! Form::open([
+                'method' => 'DELETE',
+                'route' => ['mbooks.msections.destroy', $mbook, $msection],
+                'style' => 'float:left',
+                'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
+            ]) !!}
+                {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm', 'style' => "margin-right: 5px; float:left"]) !!}
+            {!! Form::close() !!}
             <a href="xxx" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Subir</a>
             <a href="xxx" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Bajar</a>
         </div>

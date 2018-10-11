@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Mbook;
+
 class Msection extends Model
 {
     /**
@@ -27,7 +29,7 @@ class Msection extends Model
 
     public function getMaxOrder()
     {
-        return $this->max('order');
+        return $this->where('mbook_id', '=', $this->mbook_id)->max('order');
     }
 
     /**
@@ -50,5 +52,18 @@ class Msection extends Model
     public function scopeOrdered($query)
     {
         return $query->orderby('order', 'asc');
+    }
+
+    public static function reindex(Mbook $mbook)
+    {
+        $index = 1;
+
+        $msections = Msection::where('mbook_id', '=', $mbook->id)->orderBy('order', 'asc')->get();
+
+        foreach($msections as $msection)
+        {
+            $msection->order = $index ++;
+            $msection->save();
+        }
     }
 }

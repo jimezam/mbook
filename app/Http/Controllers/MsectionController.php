@@ -41,8 +41,8 @@ class MsectionController extends Controller
      */
     public function store(MsectionCreateRequest $request, Mbook $mbook)
     {
+        // TODO
         // VERIFICAR QUE NO PERMITA EDITAR UN LIBRO NO PROPIO DESDE URL
-        // VERIFICAR QUE EL GETMAXORDER NO INTEFIERA ENTRE MSECTIONS DE MBOOKS
 
         $input = $request->all();
 
@@ -63,11 +63,9 @@ class MsectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Mbook $mbook)
+    public function show(Mbook $mbook, Msection $msection)
     {
-        /*
-        return view('mbooks.show', compact('mbook'));
-        */
+        return view('msections.show', compact('mbook', 'msection'));
     }
 
     /**
@@ -76,14 +74,9 @@ class MsectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mbook $mbook)
+    public function edit(Mbook $mbook, Msection $msection)
     {
-        /*
-        $categories = Category::orderby('name', 'asc') -> pluck('name', 'id');
-        $states = Mbook::getStates();
-
-        return view('mbooks.edit', compact('mbook', 'categories', 'states'));
-        */
+        return view('msections.edit', compact('mbook', 'msection'));
     }
 
     /**
@@ -93,17 +86,15 @@ class MsectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mbook $mbook)
+    public function update(MsectionCreateRequest $request, Mbook $mbook, Msection $msection)
     {
-        /*
         $input = $request->all();
 
-        $mbook->fill($input)->save();
+        $msection->fill($input)->save();
 
         return redirect()
-            ->route('mbooks.index')
-            ->with('success', '¡Libro editado exitosamente!');
-        */
+            ->route('mbooks.msections.index', $mbook)
+            ->with('success', '¡Sección editada exitosamente!');
     }
 
     /**
@@ -112,14 +103,14 @@ class MsectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mbook $mbook)
+    public function destroy(Mbook $mbook, Msection $msection)
     {
-        /*
-        $mbook->delete();
+        $msection->delete();
+
+        Msection::reindex($mbook);
 
         return redirect()
-            ->route('mbooks.index')
-            ->with('success', '¡Libro removido exitosamente!');
-        */
+            ->route('mbooks.msections.index', [$mbook, $msection])
+            ->with('success', '¡Sección removida exitosamente!');
     }
 }
