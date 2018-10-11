@@ -49,13 +49,13 @@ class Mbook extends Model
     {
         return $query->where('user_id', '=', $user);
     }
+
     /**
      * Scope a query to xxx.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-
     public function scopeOwnedByMe($query)
     {
         return $query->where('user_id', '=', Auth::id());

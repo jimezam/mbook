@@ -6,21 +6,9 @@
 
 <h1>Listar libros</h1>
 <p class="lead">Listado de todos los libros escritos por ti.</p>
-<p> <a href="{!! route('mbooks.create') !!}" class="btn btn-primary">Agregar</a></p>
+<p><a href="{!! route('mbooks.create') !!}" class="btn btn-primary">Agregar</a></p>
 
-<br>
-
-<div class="table-responsive">
-<table class="table table-hover table-striped">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Opciones</th>
-        </tr>
-    </thead>
-    <tbody class="">
+<div id="items-list" style="padding-top: 5px;">
 
 @forelse($mbooks as $mbook)
     @php
@@ -33,47 +21,42 @@
             case "inactive": $stateType = "light"; break;
         }
     @endphp
-<tr>
-    <td>
-        <p class="h5">{{ $mbook->name }}</p>
-        <p>{{ $mbook->shortname }}</p>
-    </td>
 
-    <td>{{ $mbook->category->name }}</td>
-
-    <td>
-        <p><span class="badge badge-pill badge-{{ $stateType }}">{{ $mbook->state }}</span> <br>
-        {{ $mbook->updated_at->diffForHumans() }}</p>
-    </td>
-
-    <td>
-        <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info" style="margin-right: 5px; float:left">Ver</a>
-        <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
-        {!! Form::open([
-            'method' => 'DELETE',
-            'route' => ['mbooks.destroy', $mbook->id],
-            'style' => 'float:left',
-            'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
-        ]) !!}
-            {!! Form::submit('Remover', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
-    </td>
-</tr>
+    <div class="card" style="margin-bottom: 5px;">
+        <div class="card-body">
+            <h5 class="card-title">{{ $mbook->name }} / {{ $mbook->shortname }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                {{ $mbook->category->name }}.&nbsp;&nbsp;
+                <span class="badge badge-pill badge-{{ $stateType }}">{{ $mbook->state }}</span>
+                <!-- {{ $mbook->updated_at->diffForHumans() }} -->
+            </h6>
+            <p class="card-text">
+                
+            </p>
+            <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left">Contenidos</a>
+            <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
+            <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
+            {!! Form::open([
+                'method' => 'DELETE',
+                'route' => ['mbooks.destroy', $mbook->id],
+                'style' => 'float:left',
+                'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
+            ]) !!}
+                {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
 
 @empty
 
-<div class="alert alert-info" role="alert">
-  No hay registros que mostrar.
-</div>
+    <div class="alert alert-info" role="alert">
+        No hay registros que mostrar.
+    </div>
 
 @endforelse
 
-    </tbody>
-</table>
 </div>
 
 {{ $mbooks->links() }}
-
-</div>
 
 @stop

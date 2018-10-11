@@ -22,35 +22,35 @@
 
 <table class="table table-striped">
 <tr>
-  <td style="width: 200px;">Id</td>
+  <th scope="row" style="width: 200px;">Id</th>
   <td>{{ $mbook->id }}</td>
 </tr>
 <tr>
-  <td>Nombre Corto</td>
+  <th scope="row">Nombre Corto</th>
   <td>{{ $mbook->shortname }}</td>
 </tr>
 <tr>
-  <td>Propietario</td>
+  <th scope="row">Propietario</th>
   <td>{{ $mbook->user->name }} &lt;{{ $mbook->user->email }}&gt;</td>
 </tr>
 <tr>
-  <td>Categoria</td>
+  <th scope="row">Categoria</th>
   <td>{{ $mbook->category->name }}</td>
 </tr>
 <tr>
-  <td>Estado</td>
+  <th scope="row">Estado</th>
   <td><span class="badge badge-pill badge-{{ $stateType }}">{{ $mbook->state }}</span></td>
 </tr>
 <tr>
-  <td>Descripción</td>
+  <th scope="row">Descripción</th>
   <td>{{ $mbook->description }}</td>
 </tr>
 <tr>
-  <td>Fecha de Creación</td>
+  <th scope="row">Fecha de Creación</th>
   <td>{{ $mbook->created_at->format('d/m/Y H:i') }}</td>
 </tr>
 <tr>
-  <td>Fecha de Actualización</td>
+  <th scope="row">Fecha de Actualización</th>
   <td>{{ $mbook->updated_at->format('d/m/Y H:i') }}</td>
 </tr>
 </table>
@@ -58,6 +58,7 @@
 <br>
 
 <a href="{{ route('mbooks.index') }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
+<a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success" style="margin-right: 5px; float:left">Contenidos</a>
 <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
 {!! Form::open([
     'method' => 'DELETE',
