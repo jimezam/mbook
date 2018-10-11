@@ -32,8 +32,8 @@
             ]) !!}
                 {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm', 'style' => "margin-right: 5px; float:left"]) !!}
             {!! Form::close() !!}
-            <a href="xxx" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Subir</a>
-            <a href="xxx" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Bajar</a>
+            <a href="{{ route('mbooks.msections.moveDown', [$mbook, $msection]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Subir</a>
+            <a href="{{ route('mbooks.msections.moveUp', [$mbook, $msection]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Bajar</a>
         </div>
     </div>
 

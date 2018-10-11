@@ -38,9 +38,9 @@ class Msection extends Model
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOfBook($query, $book)
+    public function scopeOfBook($query, $book_id)
     {
-        return $query->where('mbook_id', '=', $book);
+        return $query->where('mbook_id', '=', $book_id);
     }
 
     /**
@@ -54,11 +54,22 @@ class Msection extends Model
         return $query->orderby('order', 'asc');
     }
 
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfOrder($query, $book_id, $order)
+    {
+        return Msection::ofBook($book_id)->where('order', '=', $order)->first();
+    }
+
     public static function reindex(Mbook $mbook)
     {
         $index = 1;
 
-        $msections = Msection::where('mbook_id', '=', $mbook->id)->orderBy('order', 'asc')->get();
+        $msections = Msection::ofBook($mbook->id)->ordered()->get();
 
         foreach($msections as $msection)
         {

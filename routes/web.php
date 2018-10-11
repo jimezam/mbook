@@ -11,14 +11,33 @@
 |
 */
 
+// Frontpage
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Authentication
+
 Auth::routes();
+
+// Home
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// mBooks
+
 Route::resource('mbooks', 'MbookController');
+
+// mSections
+
+Route::get('/mbooks/{mbook}/msections/{msection}/moveUp', 'MsectionController@moveUp')
+    ->name('mbooks.msections.moveUp');
+Route::get('/mbooks/{mbook}/msections/{msection}/moveDown', 'MsectionController@moveDown')
+    ->name('mbooks.msections.moveDown');
+
 Route::resource('mbooks.msections', 'MsectionController');
+
+// mSheets 
+
 Route::resource('mbooks.msections.msheets', 'MsheetController');

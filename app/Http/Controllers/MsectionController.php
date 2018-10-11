@@ -113,4 +113,44 @@ class MsectionController extends Controller
             ->route('mbooks.msections.index', [$mbook, $msection])
             ->with('success', '¡Sección removida exitosamente!');
     }
+
+    public function moveUp(Mbook $mbook, Msection $msection)
+    {
+        $order = $msection->order;
+        $maxOrder = $msection->getMaxOrder();
+
+        if($order < $maxOrder)
+        {
+            $nextMsection = Msection::ofOrder($mbook->id, $order + 1);
+
+            $msection->order += 1;
+            $nextMsection->order -= 1;
+
+            $msection->save();
+            $nextMsection->save();
+        }
+        // else, it's the last one
+
+        return redirect()->back();
+    }
+
+    public function moveDown(Mbook $mbook, Msection $msection)
+    {
+        $order = $msection->order;
+        $minOrder = 1;
+
+        if($order > $minOrder)
+        {
+            $previousMsection = Msection::ofOrder($mbook->id, $order - 1);
+
+            $msection->order -= 1;
+            $previousMsection->order += 1;
+
+            $msection->save();
+            $previousMsection->save();
+        }
+        // else, it's the first one
+
+        return redirect()->back();
+    }
 }
