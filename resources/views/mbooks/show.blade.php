@@ -58,7 +58,7 @@
 <br>
 
 <a href="{{ route('mbooks.index') }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
-<a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success" style="margin-right: 5px; float:left">Contenidos</a>
+<a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success" style="margin-right: 5px; float:left">Secciones</a>
 <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
 {!! Form::open([
     'method' => 'DELETE',

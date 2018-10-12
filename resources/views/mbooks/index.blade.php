@@ -33,7 +33,7 @@
             <p class="card-text">
                 
             </p>
-            <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left">Contenidos</a>
+            <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left">Secciones</a>
             <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
             <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
             {!! Form::open([

@@ -39,7 +39,7 @@
 <br>
 
 <a href="{{ route('mbooks.msections.index', $mbook) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
-<a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-success" style="margin-right: 5px; float:left">Contenidos</a>
+<a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-success" style="margin-right: 5px; float:left">Páginas</a>
 <a href="{{ route('mbooks.msections.edit', [$mbook, $msection]) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
 {!! Form::open([
     'method' => 'DELETE',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MsectionCreateRequest;
 use App\Mbook;
@@ -121,13 +122,16 @@ class MsectionController extends Controller
 
         if($order < $maxOrder)
         {
-            $nextMsection = Msection::ofOrder($mbook->id, $order + 1);
+            DB::transaction(function() use ($mbook, $msection, $order)
+            {
+                $nextMsection = Msection::ofOrder($mbook->id, $order + 1);
 
-            $msection->order += 1;
-            $nextMsection->order -= 1;
-
-            $msection->save();
-            $nextMsection->save();
+                $msection->order += 1;
+                $nextMsection->order -= 1;
+    
+                $msection->save();
+                $nextMsection->save();
+            });
         }
         // else, it's the last one
 
@@ -141,13 +145,16 @@ class MsectionController extends Controller
 
         if($order > $minOrder)
         {
-            $previousMsection = Msection::ofOrder($mbook->id, $order - 1);
+            DB::transaction(function() use ($mbook, $msection, $order)
+            {
+                $previousMsection = Msection::ofOrder($mbook->id, $order - 1);
 
-            $msection->order -= 1;
-            $previousMsection->order += 1;
-
-            $msection->save();
-            $previousMsection->save();
+                $msection->order -= 1;
+                $previousMsection->order += 1;
+    
+                $msection->save();
+                $previousMsection->save();
+            });
         }
         // else, it's the first one
 
