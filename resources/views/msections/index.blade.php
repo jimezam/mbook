@@ -14,6 +14,7 @@
 <div id="items-list" style="padding-top: 5px;">
 
 @forelse($msections as $msection)
+
     <div class="card" style="margin-bottom: 5px;">
         <div class="card-body">
             <h5 class="card-title">{{ $msection->name }}</h5>

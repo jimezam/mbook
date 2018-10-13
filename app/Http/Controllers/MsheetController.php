@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\MsheetCreateRequest;
+use App\Mbook;
+use App\Msection;
+use App\Msheet;
+
+
 class MsheetController extends Controller
 {
     /**
@@ -11,9 +18,11 @@ class MsheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Mbook $mbook, Msection $msection)
     {
-        //
+        $msheets = Msheet::ofSection($msection->id)->ordered()->paginate(20);
+
+        return view('msheets.index', compact('mbook', 'msection', 'msheets'));
     }
 
     /**
@@ -21,9 +30,9 @@ class MsheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Mbook $mbook, Msection $msection)
     {
-        //
+        return view('msheets.create', compact('mbook', 'msection'));
     }
 
     /**
@@ -32,9 +41,23 @@ class MsheetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MsheetCreateRequest $request, Mbook $mbook, Msection $msection)
     {
-        //
+        // TODO
+        // VERIFICAR QUE NO PERMITA EDITAR UNA PÁGINA NO PROPIO DESDE URL
+        // IGUAL OTROS VERBOS
+
+        $input = $request->all();
+
+        $sheet = new Msheet();
+        $sheet->fill($input);
+        $sheet->msection_id = $msection->id;
+        $sheet->order = $sheet->getMaxOrder() + 1;
+        $sheet->save();
+
+        return redirect()
+            ->route('mbooks.msections.msheets.index', [$mbook, $msection])
+            ->with('success', '¡Página creada exitosamente!');
     }
 
     /**
@@ -77,8 +100,28 @@ class MsheetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mbook $mbook, Msection $msection, Msheet $msheet)
     {
-        //
+        $msheet->delete();
+
+        Msheet::reindex($msection);
+
+        return redirect()
+            ->route('mbooks.msections.msheets.index', [$mbook, $msection])
+            ->with('success', 'Página removida exitosamente!');
+    }
+
+    public function moveUp(Mbook $mbook, Msection $msection, Msheet $msheet)
+    {
+        $msheet->moveUp();
+
+        return redirect()->back();
+    }
+
+    public function moveDown(Mbook $mbook, Msection $msection, Msheet $msheet)
+    {
+        $msheet->moveDown();
+
+        return redirect()->back();
     }
 }

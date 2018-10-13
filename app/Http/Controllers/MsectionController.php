@@ -44,6 +44,7 @@ class MsectionController extends Controller
     {
         // TODO
         // VERIFICAR QUE NO PERMITA EDITAR UN LIBRO NO PROPIO DESDE URL
+        // IGUAL OTROS VERBOS
 
         $input = $request->all();
 
@@ -117,46 +118,14 @@ class MsectionController extends Controller
 
     public function moveUp(Mbook $mbook, Msection $msection)
     {
-        $order = $msection->order;
-        $maxOrder = $msection->getMaxOrder();
-
-        if($order < $maxOrder)
-        {
-            DB::transaction(function() use ($mbook, $msection, $order)
-            {
-                $nextMsection = Msection::ofOrder($mbook->id, $order + 1);
-
-                $msection->order += 1;
-                $nextMsection->order -= 1;
-    
-                $msection->save();
-                $nextMsection->save();
-            });
-        }
-        // else, it's the last one
+        $msection->moveUp();
 
         return redirect()->back();
     }
 
     public function moveDown(Mbook $mbook, Msection $msection)
     {
-        $order = $msection->order;
-        $minOrder = 1;
-
-        if($order > $minOrder)
-        {
-            DB::transaction(function() use ($mbook, $msection, $order)
-            {
-                $previousMsection = Msection::ofOrder($mbook->id, $order - 1);
-
-                $msection->order -= 1;
-                $previousMsection->order += 1;
-    
-                $msection->save();
-                $previousMsection->save();
-            });
-        }
-        // else, it's the first one
+        $msection->moveDown();
 
         return redirect()->back();
     }

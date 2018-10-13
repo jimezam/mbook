@@ -40,4 +40,9 @@ Route::resource('mbooks.msections', 'MsectionController');
 
 // mSheets 
 
+Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveUp', 'MsheetController@moveUp')
+    ->name('mbooks.msections.msheets.moveUp');
+Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveDown', 'MsheetController@moveDown')
+    ->name('mbooks.msections.msheets.moveDown');
+
 Route::resource('mbooks.msections.msheets', 'MsheetController');

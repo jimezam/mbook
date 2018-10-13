@@ -16,10 +16,11 @@ class CreateMsheetsTable extends Migration
         Schema::create('msheets', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('msection_id');
+            $table->string('name', 50);
             $table->text('contents');
             $table->unsignedTinyInteger('order');
-            $table->string('foreground', 6)->nullable();
-            $table->string('background', 6)->nullable();
+            $table->string('foreground', 7)->nullable();
+            $table->string('background', 7)->nullable();
             $table->timestamps();
 
             $table->foreign('msection_id')

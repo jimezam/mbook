@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\DB;
 use App\Mbook;
 
 class Msection extends Model
@@ -69,12 +70,67 @@ class Msection extends Model
     {
         $index = 1;
 
-        $msections = Msection::ofBook($mbook->id)->ordered()->get();
-
-        foreach($msections as $msection)
+        DB::transaction(function() use ($index, $mbook)
         {
-            $msection->order = $index ++;
-            $msection->save();
+            $msections = Msection::ofBook($mbook->id)->ordered()->get();
+
+            foreach($msections as $msection)
+            {
+                $msection->order = $index ++;
+                $msection->save();
+            }
+        });
+    }
+
+    public function moveUp()
+    {
+        $msection = $this;
+
+        $order = $msection->order;
+        $maxOrder = $msection->getMaxOrder();
+
+        if($order < $maxOrder)
+        {
+            DB::transaction(function() use ($msection, $order)
+            {
+                $nextMsection = Msection::ofOrder($this->mbook->id, $order + 1);
+
+                $msection->order += 1;
+                $nextMsection->order -= 1;
+    
+                $msection->save();
+                $nextMsection->save();
+            });
         }
+        else
+            return false;
+
+        return true;
+    }
+
+    public function moveDown()
+    {
+        $msection = $this;
+
+        $order = $msection->order;
+        $minOrder = 1;
+
+        if($order > $minOrder)
+        {
+            DB::transaction(function() use ($msection, $order)
+            {
+                $previousMsection = Msection::ofOrder($msection->mbook->id, $order - 1);
+
+                $msection->order -= 1;
+                $previousMsection->order += 1;
+    
+                $msection->save();
+                $previousMsection->save();
+            });
+        }
+        else
+            return false;
+
+        return true;
     }
 }
