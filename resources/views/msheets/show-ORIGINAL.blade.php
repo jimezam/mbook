@@ -28,11 +28,11 @@
 </tr>
 <tr>
   <th scope="row">Fecha de Creación</th>
-  <td>{{ $msection->created_at->format('d/m/Y H:i') }}</td>
+  <td>{{ $mbook->created_at->format('d/m/Y H:i') }}</td>
 </tr>
 <tr>
   <th scope="row">Fecha de Actualización</th>
-  <td>{{ $msection->updated_at->format('d/m/Y H:i') }}</td>
+  <td>{{ $mbook->updated_at->format('d/m/Y H:i') }}</td>
 </tr>
 </table>
 

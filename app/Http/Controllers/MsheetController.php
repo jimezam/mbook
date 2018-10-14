@@ -67,9 +67,22 @@ class MsheetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Mbook $mbook, Msection $msection, Msheet $msheet)
     {
-        //
+        // TODO: revisar que pasa si se ve una página del listado 
+        // de secciones paginado en >1
+
+        // TODO: improve headers
+
+        // TODO: problems with main menu bar options
+
+        // TODO: view mbooks
+
+        // TODO: awesome font icons
+
+        $msheets = Msheet::ofSection($msection->id)->ordered()->paginate(20);
+
+        return view('msheets.show', compact('mbook', 'msection', 'msheet', 'msheets'));
     }
 
     /**
