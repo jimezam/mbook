@@ -1,3 +1,16 @@
+@php
+
+$foreground = "#000000";
+$background = "#ffffff";
+
+if(isset($msheet))
+{
+    $foreground = $msheet->foreground;
+    $background = $msheet->background;
+}
+
+@endphp
+
 <!-- --------------------------------- -->
 
 <div class="form-group">
@@ -12,17 +25,17 @@
 
 <div class="form-group">
     {!! Form::label('customize', '¿Personalizar colores?', ['class' => 'control-label']) !!}
-    {!! Form::select('customize', ['y' => 'Si', 'n' => 'No'], 'n', ['class' => 'form-control']); !!}
+    {!! Form::select('customize', ['n' => 'No', 'y' => 'Si'], null, ['class' => 'form-control']); !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('foreground', 'Color de letra', ['class' => 'control-label']) !!}
-    <input type="color" id="foreground" name="foreground" value="#000000" class="form-control">
+    <input type="color" id="foreground" name="foreground" value="{{ old('foreground', $foreground) }}" class="form-control">
 </div>
 
 <div class="form-group">
     {!! Form::label('background', 'Background', ['class' => 'control-label']) !!}
-    <input type="color" id="background" name="background" value="#ffffff" class="form-control">
+    <input type="color" id="background" name="background" value="{{ old('background', $background) }}" class="form-control">
 </div>
 
 <!-- --------------------------------- -->

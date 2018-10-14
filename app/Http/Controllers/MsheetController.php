@@ -32,6 +32,8 @@ class MsheetController extends Controller
      */
     public function create(Mbook $mbook, Msection $msection)
     {
+        // TODO: problema con colores en crear/editar
+
         return view('msheets.create', compact('mbook', 'msection'));
     }
 
@@ -43,8 +45,7 @@ class MsheetController extends Controller
      */
     public function store(MsheetCreateRequest $request, Mbook $mbook, Msection $msection)
     {
-        // TODO
-        // VERIFICAR QUE NO PERMITA EDITAR UNA PÁGINA NO PROPIO DESDE URL
+        // TODO: VERIFICAR QUE NO PERMITA EDITAR UNA PÁGINA NO PROPIO DESDE URL
         // IGUAL OTROS VERBOS
 
         $input = $request->all();
@@ -77,9 +78,19 @@ class MsheetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Mbook $mbook, Msection $msection, Msheet $msheet)
     {
-        //
+        if($msheet->foreground == null | $msheet->background == null)
+        {
+            $msheet->customize = 'n';
+
+            $msheet->foreground = $msheet->foreground ?: "#000000";
+            $msheet->background = $msheet->background ?: "#ffffff";
+        }
+        else
+            $msheet->customize = 'y';
+
+        return view('msheets.edit', compact('mbook', 'msection', 'msheet'));
     }
 
     /**
@@ -89,9 +100,15 @@ class MsheetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MsheetCreateRequest $request, Mbook $mbook, Msection $msection, Msheet $msheet)
     {
-        //
+        $input = $request->all();
+
+        $msheet->fill($input)->save();
+
+        return redirect()
+            ->route('mbooks.msections.msheets.index', [$mbook, $msection])
+            ->with('success', '¡Página editada exitosamente!');
     }
 
     /**
@@ -108,7 +125,7 @@ class MsheetController extends Controller
 
         return redirect()
             ->route('mbooks.msections.msheets.index', [$mbook, $msection])
-            ->with('success', 'Página removida exitosamente!');
+            ->with('success', '¡Página removida exitosamente!');
     }
 
     public function moveUp(Mbook $mbook, Msection $msection, Msheet $msheet)

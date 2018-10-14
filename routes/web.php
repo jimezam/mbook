@@ -11,6 +11,8 @@
 |
 */
 
+// TODO: ADD AUTHENTICATION PROTECTION TO ROUTES
+
 // Frontpage
 
 Route::get('/', function () {

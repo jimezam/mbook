@@ -56,7 +56,7 @@ class MsectionController extends Controller
 
         return redirect()
             ->route('mbooks.msections.index', $mbook->id)
-            ->with('success', '¡Libro creado exitosamente!');
+            ->with('success', '¡Sección creada exitosamente!');
     }
 
     /**
