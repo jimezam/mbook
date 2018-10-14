@@ -23,28 +23,35 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Home
+// Authentication required routes
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function() 
+{
+    // Home
 
-// mBooks
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('mbooks', 'MbookController');
+    // mBooks
 
-// mSections
+    Route::resource('mbooks', 'MbookController');
 
-Route::get('/mbooks/{mbook}/msections/{msection}/moveUp', 'MsectionController@moveUp')
-    ->name('mbooks.msections.moveUp');
-Route::get('/mbooks/{mbook}/msections/{msection}/moveDown', 'MsectionController@moveDown')
-    ->name('mbooks.msections.moveDown');
+    // mSections
 
-Route::resource('mbooks.msections', 'MsectionController');
+    Route::get('/mbooks/{mbook}/msections/{msection}/moveUp', 'MsectionController@moveUp')
+        ->name('mbooks.msections.moveUp');
+    Route::get('/mbooks/{mbook}/msections/{msection}/moveDown', 'MsectionController@moveDown')
+        ->name('mbooks.msections.moveDown');
 
-// mSheets 
+    Route::resource('mbooks.msections', 'MsectionController');
 
-Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveUp', 'MsheetController@moveUp')
-    ->name('mbooks.msections.msheets.moveUp');
-Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveDown', 'MsheetController@moveDown')
-    ->name('mbooks.msections.msheets.moveDown');
+    // mSheets 
 
-Route::resource('mbooks.msections.msheets', 'MsheetController');
+    Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveUp', 'MsheetController@moveUp')
+        ->name('mbooks.msections.msheets.moveUp');
+    Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveDown', 'MsheetController@moveDown')
+        ->name('mbooks.msections.msheets.moveDown');
+
+    Route::resource('mbooks.msections.msheets', 'MsheetController');
+});
+
+// Non-authenticated routes
