@@ -4,10 +4,10 @@
 
 <div class="container">
 
+@include('layouts.subview_breadcrumbs') 
+
 <h1>Editar una Sección</h1>
 <p class="lead">Especificar los nuevos datos de la sección.</p>
-
-<hr>
 
 @include('layouts.subview_form_errors')
 

@@ -4,10 +4,10 @@
 
 <div class="container">
 
+@include('layouts.subview_breadcrumbs') 
+
 <h1>Agregar una sección</h1>
 <p class="lead">Especificar los datos de la nueva sección del libro <span class="h4">"{{ $mbook->name }}"</span>.</p>
-
-<hr>
 
 @include('layouts.subview_form_errors')
 

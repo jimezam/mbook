@@ -15,6 +15,8 @@
     
 <div class="container">
 
+@include('layouts.subview_breadcrumbs') 
+
 <h1>{{ $mbook->name }}</h1>
 <p class="lead">Información completa de este libro.</p>
 

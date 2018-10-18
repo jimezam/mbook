@@ -4,10 +4,10 @@
 
 <div class="container">
 
+@include('layouts.subview_breadcrumbs') 
+
 <h1>Agregar un Libro</h1>
 <p class="lead">Especificar los datos del nuevo libro.</p>
-
-<hr>
 
 @include('layouts.subview_form_errors')
 

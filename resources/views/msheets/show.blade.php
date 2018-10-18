@@ -4,6 +4,8 @@
 
 <div class="container">
 
+@include('layouts.subview_breadcrumbs') 
+
 <h1>Ver página</h1>
 <p class="lead">
     Información completa de la página <span class="h4">"{{ $msheet->name }}"</span>
@@ -16,7 +18,7 @@
 </p>
 
 <div class="row">
-    <div id="items-list" class="col-md-5" style="padding-top: 5px;">
+    <div id="items-list" class="col-md-4" style="padding-top: 5px;">
 
     @forelse($msheets as $_msheet)
 
@@ -51,7 +53,7 @@
     @endforelse
 
     </div>
-    <div id="items-show" class="col-md-7">
+    <div id="items-show" class="col-md-8">
         <div class="card">
             <div class="card-body">
                 {!! nl2br($msheet->contents) !!}
@@ -63,11 +65,17 @@
         <table class="table table-striped">
             <tr>
                 <th scope="row" style="width: 220px;">Background</th>
-                <td>{{ $msheet->background }}</td>
+                <td style="	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;">
+                    {{ $msheet->background }} 
+                    <span style="background-color:{{ $msheet->background }}; border: 1px solid black;">&nbsp;&nbsp;</span>
+                </td>
             </tr>
             <tr>
                 <th scope="row">Foreground</th>
-                <td>{{ $msheet->foreground }}</td>
+                <td style="	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;">
+                    {{ $msheet->foreground }}
+                    <span style="background-color:{{ $msheet->foreground }}; border: 1px solid black;">&nbsp;&nbsp</span>
+                </td>
             </tr>
             <tr>
                 <th scope="row">Fecha de Creación</th>

@@ -4,6 +4,8 @@
 
 <div class="container">
 
+@include('layouts.subview_breadcrumbs') 
+
 <h1>Listar Secciones</h1>
 <p class="lead">Listado de las secciones del libro <span class="h4">"{{ $mbook->name }}"</span>.</p>
 <p>
