@@ -34,7 +34,7 @@ if(isset($msheet))
 </div>
 
 <div class="form-group">
-    {!! Form::label('background', 'Background', ['class' => 'control-label']) !!}
+    {!! Form::label('background', 'Color de fondo', ['class' => 'control-label']) !!}
     <input type="color" id="background" name="background" value="{{ old('background', $background) }}" class="form-control">
 </div>
 

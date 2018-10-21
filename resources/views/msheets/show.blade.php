@@ -64,17 +64,17 @@
 
         <table class="table table-striped">
             <tr>
-                <th scope="row" style="width: 220px;">Background</th>
-                <td style="	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;">
-                    {{ $msheet->background }} 
-                    <span style="background-color:{{ $msheet->background }}; border: 1px solid black;">&nbsp;&nbsp;</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Foreground</th>
+                <th scope="row">Color de letra</th>
                 <td style="	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;">
                     {{ $msheet->foreground }}
                     <span style="background-color:{{ $msheet->foreground }}; border: 1px solid black;">&nbsp;&nbsp</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="width: 220px;">Color de fondo</th>
+                <td style="	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;">
+                    {{ $msheet->background }} 
+                    <span style="background-color:{{ $msheet->background }}; border: 1px solid black;">&nbsp;&nbsp;</span>
                 </td>
             </tr>
             <tr>

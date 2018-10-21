@@ -10,7 +10,6 @@ use App\Mbook;
 use App\Msection;
 use App\Msheet;
 
-
 class MsheetController extends Controller
 {
     /**
@@ -32,8 +31,6 @@ class MsheetController extends Controller
      */
     public function create(Mbook $mbook, Msection $msection)
     {
-        // TODO: problema con colores en crear/editar
-
         return view('msheets.create', compact('mbook', 'msection'));
     }
 
@@ -50,11 +47,18 @@ class MsheetController extends Controller
 
         $input = $request->all();
 
-        $sheet = new Msheet();
-        $sheet->fill($input);
-        $sheet->msection_id = $msection->id;
-        $sheet->order = $sheet->getMaxOrder() + 1;
-        $sheet->save();
+        $msheet = new Msheet();
+        $msheet->fill($input);
+        $msheet->msection_id = $msection->id;
+        $msheet->order = $msheet->getMaxOrder() + 1;
+
+        if($input['customize'] == 'n')
+        {
+            $msheet->foreground = null;
+            $msheet->background = null;
+        }
+
+        $msheet->save();
 
         return redirect()
             ->route('mbooks.msections.msheets.index', [$mbook, $msection])
@@ -72,15 +76,17 @@ class MsheetController extends Controller
         // TODO: revisar que pasa si se ve una página del listado 
         // de secciones paginado en >1
 
-        // TODO: improve headers
-
-        // TODO: problems with main menu bar options
-
-        // TODO: view mbooks
-
-        // TODO: awesome font icons
-
         $msheets = Msheet::ofSection($msection->id)->ordered()->paginate(20);
+
+        if($msheet->foreground == null | $msheet->background == null)
+        {
+            $msheet->customize = 'n';
+
+            $msheet->foreground = $msheet->foreground ?: Msheet::getDefaultForeground();
+            $msheet->background = $msheet->background ?: Msheet::getDefaultBackground();
+        }
+        else
+        $msheet->customize = 'y';
 
         return view('msheets.show', compact('mbook', 'msection', 'msheet', 'msheets'));
     }
@@ -97,8 +103,8 @@ class MsheetController extends Controller
         {
             $msheet->customize = 'n';
 
-            $msheet->foreground = $msheet->foreground ?: "#000000";
-            $msheet->background = $msheet->background ?: "#ffffff";
+            $msheet->foreground = $msheet->foreground ?: Msheet::getDefaultForeground();
+            $msheet->background = $msheet->background ?: Msheet::getDefaultBackground();
         }
         else
             $msheet->customize = 'y';
@@ -117,7 +123,15 @@ class MsheetController extends Controller
     {
         $input = $request->all();
 
-        $msheet->fill($input)->save();
+        $msheet->fill($input);
+
+        if($input['customize'] == 'n')
+        {
+            $msheet->foreground = null;
+            $msheet->background = null;
+        }
+
+        $msheet->save();
 
         return redirect()
             ->route('mbooks.msections.msheets.index', [$mbook, $msection])

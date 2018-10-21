@@ -18,7 +18,7 @@
         
         switch($mbook->state)
         {
-            case "published": $stateType = "success"; break;
+            case "published": $stateType = "primary"; break;
             case "private": $stateType = "secondary"; break;
             case "inactive": $stateType = "light"; break;
         }

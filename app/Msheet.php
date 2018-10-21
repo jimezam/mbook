@@ -129,4 +129,14 @@ class Msheet extends Model
 
         return true;
     }
+
+    public static function getDefaultForeground()
+    {
+        return "#000000";
+    }
+
+    public static function getDefaultBackground()
+    {
+        return "#FFFFFF";
+    }
 }
