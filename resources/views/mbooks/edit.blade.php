@@ -6,8 +6,12 @@
 
 @include('layouts.subview_breadcrumbs') 
 
+<br>
+
 <h1>Editar un Libro</h1>
 <p class="lead">Especificar los nuevos datos del libro.</p>
+
+<br>
 
 @include('layouts.subview_form_errors')
 
@@ -18,11 +22,13 @@
 
 @include('mbooks.subview_form_elements')
 
-{!! Form::submit('Editar', ['class' => 'btn btn-info']) !!}
+<button type="submit" class="btn btn-info"><i class='fas fa-pencil-alt'></i> Editar</button>
 <a href="{{ request()->headers->get('referer') }}" class="btn btn-secondary">Cancelar</a>
 
 {!! Form::close() !!}
 
 </div>
+
+<br>
 
 @stop

@@ -8,7 +8,7 @@
 
 <h1>Listar libros</h1>
 <p class="lead">Listar todos los libros escritos por ti.</p>
-<p><a href="{!! route('mbooks.create') !!}" class="btn btn-primary">Agregar</a></p>
+<p><a href="{!! route('mbooks.create') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</a></p>
 
 <div id="items-list" style="padding-top: 5px;">
 
@@ -26,7 +26,7 @@
 
     <div class="card" style="margin-bottom: 5px;">
         <div class="card-body">
-            <h5 class="card-title">{{ $mbook->name }} / {{ $mbook->shortname }}</h5>
+            <h5 class="card-title">{{ $mbook->name }} ({{ $mbook->shortname }})</h5>
             <h6 class="card-subtitle mb-2 text-muted">
                 {{ $mbook->category->name }}.&nbsp;&nbsp;
                 <span class="badge badge-pill badge-{{ $stateType }}">{{ $mbook->state }}</span>
@@ -35,16 +35,16 @@
             <p class="card-text">
                 
             </p>
-            <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left">Secciones</a>
-            <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
-            <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
+            <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-file-alt"></i> Secciones</a>
+            <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-eye"></i> Ver</a>
+            <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-pencil-alt"></i> Editar</a>
             {!! Form::open([
                 'method' => 'DELETE',
                 'route' => ['mbooks.destroy', $mbook->id],
                 'style' => 'float:left',
                 'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
             ]) !!}
-                {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm']) !!}
+                <button type="submit" class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i> Remover</button>
             {!! Form::close() !!}
         </div>
     </div>
