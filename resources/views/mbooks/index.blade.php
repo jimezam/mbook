@@ -7,10 +7,8 @@
 @include('layouts.subview_breadcrumbs') 
 
 <h1>Listar libros</h1>
-<p class="lead">Listado de todos los libros escritos por ti.</p>
+<p class="lead">Listar todos los libros escritos por ti.</p>
 <p><a href="{!! route('mbooks.create') !!}" class="btn btn-primary">Agregar</a></p>
-
-<!--  <i class="fa fa-user"></i>   -->
 
 <div id="items-list" style="padding-top: 5px;">
 

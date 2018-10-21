@@ -17,10 +17,8 @@
 
 @include('layouts.subview_breadcrumbs') 
 
-<h1>{{ $mbook->name }}</h1>
-<p class="lead">Información completa de este libro.</p>
-
-<br>
+<h1>Ver Libro</h1>
+<p class="lead">Consultar la información completa de este libro.</p>
 
 <table class="table table-striped">
 <tr>
@@ -57,8 +55,6 @@
 </tr>
 </table>
 
-<br>
-
 <a href="{{ route('mbooks.index') }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
 <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success" style="margin-right: 5px; float:left">Secciones</a>
 <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
@@ -72,5 +68,7 @@
 {!! Form::close() !!}
 
 </div>
+
+<br>
 
 @stop

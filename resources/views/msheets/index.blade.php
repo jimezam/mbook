@@ -8,8 +8,7 @@
 
 <h1>Listar Páginas</h1>
 <p class="lead">
-    Listado de las páginas de la sección <span class="h4">"{{ $msection->name }}"</span> 
-    del libro <span class="h4">"{{ $mbook->name }}"</span>.
+    Listar las páginas de esta sección.
 </p>
 <p>
     <a href="{!! route('mbooks.msections.msheets.create', [$mbook, $msection]) !!}" class="btn btn-primary">Agregar</a>

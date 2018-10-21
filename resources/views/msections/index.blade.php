@@ -7,7 +7,7 @@
 @include('layouts.subview_breadcrumbs') 
 
 <h1>Listar Secciones</h1>
-<p class="lead">Listado de las secciones del libro <span class="h4">"{{ $mbook->name }}"</span>.</p>
+<p class="lead">Listar las secciones de este libro.</p>
 <p>
     <a href="{!! route('mbooks.msections.create', $mbook->id) !!}" class="btn btn-primary">Agregar</a>
     <a href="{{ route('mbooks.index') }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>

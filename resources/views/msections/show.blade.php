@@ -6,8 +6,10 @@
 
 @include('layouts.subview_breadcrumbs') 
 
-<h1>{{ $msection->name }}</h1>
-<p class="lead">Información completa de esta sección.</p>
+<br>
+
+<h1>Ver Sección</h1>
+<p class="lead">Consultar la información completa de esta sección.</p>
 
 <br>
 

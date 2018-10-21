@@ -8,9 +8,7 @@
 
 <h1>Ver página</h1>
 <p class="lead">
-    Información completa de la página <span class="h4">"{{ $msheet->name }}"</span>
-    de la sección <span class="h4">"{{ $msection->name }}"</span> 
-    del libro <span class="h4">"{{ $mbook->name }}"</span>.
+    Consultar la información completa de este libro.
 </p>
 <p>
     <a href="{!! route('mbooks.msections.msheets.create', [$mbook, $msection]) !!}" class="btn btn-primary">Agregar</a>

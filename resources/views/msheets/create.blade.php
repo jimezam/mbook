@@ -8,8 +8,7 @@
 
 <h1>Agregar una página</h1>
 <p class="lead">
-    Especificar los datos de la nueva página de la sección <span class="h4">"{{ $msection->name }}"</span> 
-    del libro <span class="h4">"{{ $mbook->name }}"</span>.
+    Especificar los datos de la nueva página de la sección.
 </p>
 
 @include('layouts.subview_form_errors')
