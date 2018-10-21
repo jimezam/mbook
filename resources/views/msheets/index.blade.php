@@ -6,13 +6,15 @@
 
 @include('layouts.subview_breadcrumbs') 
 
+<br>
+
 <h1>Listar Páginas</h1>
 <p class="lead">
     Listar las páginas de esta sección.
 </p>
 <p>
-    <a href="{!! route('mbooks.msections.msheets.create', [$mbook, $msection]) !!}" class="btn btn-primary">Agregar</a>
-    <a href="{{ route('mbooks.msections.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
+    <a href="{!! route('mbooks.msections.msheets.create', [$mbook, $msection]) !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</a>
+    <a href="{{ route('mbooks.msections.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left"><i class="fas fa-arrow-left"></i> Volver</a>
 </p>
 
 <div id="items-list" style="padding-top: 5px;">
@@ -26,18 +28,18 @@
             <p class="card-text">
                 
             </p>
-            <a href="{{ route('mbooks.msections.msheets.show', [$mbook, $msection, $msheet]) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
-            <a href="{{ route('mbooks.msections.msheets.edit', [$mbook, $msection, $msheet]) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
+            <a href="{{ route('mbooks.msections.msheets.show', [$mbook, $msection, $msheet]) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-eye"></i> Ver</a>
+            <a href="{{ route('mbooks.msections.msheets.edit', [$mbook, $msection, $msheet]) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-pencil-alt"></i> Editar</a>
             {!! Form::open([
                 'method' => 'DELETE',
                 'route' => ['mbooks.msections.msheets.destroy', $mbook, $msection, $msheet],
                 'style' => 'float:left',
                 'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
             ]) !!}
-                {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm', 'style' => "margin-right: 5px; float:left"]) !!}
+                <button type="submit" class="btn btn-danger btn-sm" style="margin-right: 5px; float:left"><i class='fas fa-trash-alt'></i> Remover</button>
             {!! Form::close() !!}
-            <a href="{{ route('mbooks.msections.msheets.moveDown', [$mbook, $msection, $msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Subir</a>
-            <a href="{{ route('mbooks.msections.msheets.moveUp', [$mbook, $msection, $msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Bajar</a>
+            <a href="{{ route('mbooks.msections.msheets.moveDown', [$mbook, $msection, $msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-long-arrow-alt-up"></i> Subir</a>
+            <a href="{{ route('mbooks.msections.msheets.moveUp', [$mbook, $msection, $msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-long-arrow-alt-down"></i> Bajar</a>
         </div>
     </div>
 
@@ -56,9 +58,11 @@
 <br>
 
 <p>
-    <a href="{{ route('mbooks.msections.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
+    <a href="{{ route('mbooks.msections.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left"><i class="fas fa-arrow-left"></i> Volver</a>
 </p>
 
 </div>
+
+<br>
 
 @stop

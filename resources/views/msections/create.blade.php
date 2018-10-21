@@ -15,7 +15,7 @@
 
 @include('msections.subview_form_elements')
 
-{!! Form::submit('Crear', ['class' => 'btn btn-primary']) !!}
+<button type="submit" class="btn btn-primary"><i class='fas fa-plus'></i> Crear</button>
 <a href="{{ request()->headers->get('referer') }}" class="btn btn-secondary">Cancelar</a>
 
 {!! Form::close() !!}

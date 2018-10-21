@@ -42,16 +42,16 @@
 
 <br>
 
-<a href="{{ route('mbooks.msections.index', $mbook) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
-<a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-success" style="margin-right: 5px; float:left">Páginas</a>
-<a href="{{ route('mbooks.msections.edit', [$mbook, $msection]) }}" class="btn btn-warning" style="margin-right: 5px; float:left">Editar</a>
+<a href="{{ route('mbooks.msections.index', $mbook) }}" class="btn btn-info" style="margin-right: 5px; float:left"><i class="fas fa-arrow-left"></i> Volver</a>
+<a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-success" style="margin-right: 5px; float:left"><i class="fas fa-file"></i> Páginas</a>
+<a href="{{ route('mbooks.msections.edit', [$mbook, $msection]) }}" class="btn btn-warning" style="margin-right: 5px; float:left"><i class="fas fa-pencil-alt"></i> Editar</a>
 {!! Form::open([
     'method' => 'DELETE',
     'route' => ['mbooks.msections.destroy', $mbook, $msection],
     'style' => 'float:left',
     'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
 ]) !!}
-    {!! Form::submit('Remover', ['class' => 'btn btn-danger']) !!}
+<button type="submit" class="btn btn-danger" style="margin-right: 5px; float:left"><i class='fas fa-trash-alt'></i> Remover</button>
 {!! Form::close() !!}
 
 </div>

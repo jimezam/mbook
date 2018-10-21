@@ -52,15 +52,15 @@
                             <!-- mBooks -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Libros') }} <span class="caret"></span>
+                                    {{ __('Libros') }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('mbooks.index') }}">
-                                        {{ __('Listar') }}
+                                    <a class="dropdown-item" href="{{ route('mbooks.index') }}">
+                                        <i class="fas fa-list-ul"></i>&nbsp;&nbsp;&nbsp;{{ __('Listar') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('mbooks.create') }}">
-                                        {{ __('Agregar') }}
+                                        <i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;{{ __('Agregar') }}
                                     </a>
                                 </div>
                             </li>
@@ -74,7 +74,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;{{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

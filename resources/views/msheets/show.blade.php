@@ -11,8 +11,8 @@
     Consultar la información completa de este libro.
 </p>
 <p>
-    <a href="{!! route('mbooks.msections.msheets.create', [$mbook, $msection]) !!}" class="btn btn-primary">Agregar</a>
-    <a href="{{ route('mbooks.msections.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
+    <a href="{!! route('mbooks.msections.msheets.create', [$mbook, $msection]) !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</a>
+    <a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left"><i class="fas fa-arrow-left"></i> Volver</a>
 </p>
 
 <div class="row">
@@ -27,18 +27,9 @@
                 <p class="card-text">
                     
                 </p>
-                <a href="{{ route('mbooks.msections.msheets.show', [$mbook, $msection, $_msheet]) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left">Ver</a>
-                <a href="{{ route('mbooks.msections.msheets.edit', [$mbook, $msection, $_msheet]) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left">Editar</a>
-                {!! Form::open([
-                    'method' => 'DELETE',
-                    'route' => ['mbooks.msections.msheets.destroy', $mbook, $msection, $_msheet],
-                    'style' => 'float:left',
-                    'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
-                ]) !!}
-                    {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm', 'style' => "margin-right: 5px; float:left"]) !!}
-                {!! Form::close() !!}
-                <a href="{{ route('mbooks.msections.msheets.moveDown', [$mbook, $msection, $_msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Subir</a>
-                <a href="{{ route('mbooks.msections.msheets.moveUp', [$mbook, $msection, $_msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left">Bajar</a>
+                <a href="{{ route('mbooks.msections.msheets.show', [$mbook, $msection, $_msheet]) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-eye"></i> Ver</a>
+                <a href="{{ route('mbooks.msections.msheets.moveDown', [$mbook, $msection, $_msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-long-arrow-alt-up"></i> Subir</a>
+                <a href="{{ route('mbooks.msections.msheets.moveUp', [$mbook, $msection, $_msheet]) }}" class="btn btn-secondary btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-long-arrow-alt-down"></i> Bajar</a>
             </div>
         </div>
 
@@ -58,7 +49,18 @@
             </div>
         </div>
 
-        <br>
+        <div style="margin-top: 10px; margin-bottom: 50px;">
+            <a href="{{ route('mbooks.msections.msheets.edit', [$mbook, $msection, $_msheet]) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-pencil-alt"></i> Editar</a>
+            {!! Form::open([
+                'method' => 'DELETE',
+                'route' => ['mbooks.msections.msheets.destroy', $mbook, $msection, $_msheet],
+                'style' => 'float:left',
+                'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
+            ]) !!}
+                <button type="submit" class="btn btn-danger btn-sm" style="margin-right: 5px; float:left"><i class='fas fa-trash-alt'></i> Remover</button>
+            {!! Form::close() !!}
+        </div>
+
 
         <table class="table table-striped">
             <tr>
@@ -92,9 +94,11 @@
 <br>
 
 <p>
-    <a href="{{ route('mbooks.msections.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
+    <a href="{{ route('mbooks.msections.msheets.index', [$mbook, $msection]) }}" class="btn btn-info" style="margin-right: 5px; float:left">Volver</a>
 </p>
 
 </div>
+
+<br>
 
 @stop

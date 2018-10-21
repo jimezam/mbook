@@ -22,7 +22,7 @@
 
 @include('mbooks.subview_form_elements')
 
-<button type="submit" class="btn btn-info"><i class='fas fa-pencil-alt'></i> Editar</button>
+<button type="submit" class="btn btn-warning"><i class='fas fa-pencil-alt'></i> Editar</button>
 <a href="{{ request()->headers->get('referer') }}" class="btn btn-secondary">Cancelar</a>
 
 {!! Form::close() !!}

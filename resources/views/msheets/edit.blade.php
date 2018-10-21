@@ -6,8 +6,12 @@
 
 @include('layouts.subview_breadcrumbs') 
 
+<br>
+
 <h1>Editar una Página</h1>
 <p class="lead">Especificar los nuevos datos de la página.</p>
+
+<br>
 
 @include('layouts.subview_form_errors')
 
@@ -28,11 +32,13 @@
 
 @include('msheets.subview_form_elements')
 
-{!! Form::submit('Editar', ['class' => 'btn btn-info']) !!}
+<button type="submit" class="btn btn-warning"><i class='fas fa-pencil-alt'></i> Editar</button>
 <a href="{{ request()->headers->get('referer') }}" class="btn btn-secondary">Cancelar</a>
 
 {!! Form::close() !!}
 
 </div>
+
+<br>
 
 @stop
