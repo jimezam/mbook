@@ -25,9 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mbooksMine = Mbook::ownedByMe()->latestUpdate()->paginate(10);
-        // TODO: notOwnedByMe
-        // TODO: tag nuevo
+        // $mbooksMine = Mbook::notOwnedByMe()->latestUpdate()->paginate(10);
+        $mbooksMine = Mbook::latestUpdate()->paginate(10);
         $mbooksRecent = Mbook::published()->latestUpdate()->paginate(10);
 
         return view('home', compact('mbooksMine', 'mbooksRecent'));
