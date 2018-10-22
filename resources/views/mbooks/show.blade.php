@@ -59,6 +59,8 @@
   </tr>
   </table>
 
+  <br>
+
   <div>
     <a href="{{ route('mbooks.index') }}" class="btn btn-info" style="margin-right: 5px; float:left"><i class="fas fa-arrow-left"></i> Volver</a>
     <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success" style="margin-right: 5px; float:left"><i class="fas fa-file-alt"></i> Secciones</a>

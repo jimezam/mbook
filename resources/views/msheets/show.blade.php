@@ -6,6 +6,8 @@
 
 @include('layouts.subview_breadcrumbs') 
 
+<br>
+
 <h1>Ver página</h1>
 <p class="lead">
     Consultar la información completa de este libro.
@@ -60,7 +62,6 @@
                 <button type="submit" class="btn btn-danger btn-sm" style="margin-right: 5px; float:left"><i class='fas fa-trash-alt'></i> Remover</button>
             {!! Form::close() !!}
         </div>
-
 
         <table class="table table-striped">
             <tr>
