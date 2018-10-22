@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class Mbook extends Model
 {
@@ -39,6 +40,26 @@ class Mbook extends Model
                 'inactive' => 'inactive'];
     }
 
+    public function isNew($days = 8)
+    {
+        $creation = $this->created_at;
+        $now = Carbon::now();
+
+        $diff = $creation->diffInDays($now);
+
+        return $diff <= $days;
+    }
+
+    public function isUpdated($days = 8)
+    {
+        $updated = $this->updated_at;
+        $now = Carbon::now();
+
+        $diff = $updated->diffInDays($now);
+
+        return $diff <= $days;
+    }
+    
     /**
      * Scope a query to xxx.
      *

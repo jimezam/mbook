@@ -37,7 +37,7 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <a href="{{ route('mbooks.msections.index', [$mbook]) }}" alt="" style="color: black">
-                        <h4 class="card-title">{{ $mbook->name }} ({{ $mbook->shortname }})</h4>
+                        <h4 class="card-title">{{ $mbook->name }}</h4>
                     </a>
                     <div class="card-subtitle mb-2 text-muted h5">
                         {{ $mbook->category->name }}.<br>
@@ -65,13 +65,36 @@
 
             @forelse($mbooksRecent as $mbook)
 
+            @php 
+                $badge = null;
+                $badgeType = "";
+
+                if($mbook->isUpdated())
+                {
+                    $badge = "Updated";
+                    $badgeType = "info";
+                }
+
+                if($mbook->isNew())
+                {
+                    $badge = "New";
+                    $badgeType = "warning";
+                }
+            @endphp
+
             <div class="card mb-2">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $mbook->name }} ({{ $mbook->shortname }})</h4>
+                    <h4 class="card-title">
+                        {{ $mbook->name }}&nbsp;
+                        @if($badge != null) 
+                            <span class="badge badge-{{ $badgeType }}">{{ $badge }}</span>
+                        @endif    
+                    </h4>
                     <div class="card-subtitle mb-2 text-muted h5">
                         {{ $mbook->category->name }}.<br>
                         {{ $mbook->user->name }}.<br>
                         {{ $mbook->updated_at->diffForHumans() }}.
+                        @php $mbook->isNew() @endphp
                     </div>
                 </div>
             </div>
