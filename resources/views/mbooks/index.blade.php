@@ -6,7 +6,7 @@
 
 @include('layouts.subview_breadcrumbs') 
 
-<h1>Listar libros</h1>
+<h1>Libros</h1>
 <p class="lead">Listar todos los libros escritos por ti.</p>
 <p><a href="{!! route('mbooks.create') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</a></p>
 
@@ -42,16 +42,16 @@
             <div class="card-body mt-0 pt-0">
                 <hr>
                 <!-- <p class="card-text"></p> -->
-                <a href="{{ route('mbooks.msections.index', $mbook->id) }}" class="btn btn-success btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-file-alt"></i> Secciones</a>
-                <a href="{{ route('mbooks.show', $mbook->id) }}" class="btn btn-info btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-eye"></i> Ver</a>
-                <a href="{{ route('mbooks.edit', $mbook->id) }}" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-pencil-alt"></i> Editar</a>
+                <a href="{{ route('mbooks.msections.index', $mbook->id) }}" onclick="event.stopPropagation()" class="btn btn-success btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-file-alt"></i> Secciones</a>
+                <a href="{{ route('mbooks.show', $mbook->id) }}" onclick="event.stopPropagation()" class="btn btn-info btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-eye"></i> Ver</a>
+                <a href="{{ route('mbooks.edit', $mbook->id) }}" onclick="event.stopPropagation()" class="btn btn-warning btn-sm" style="margin-right: 5px; float:left"><i class="fas fa-pencil-alt"></i> Editar</a>
                 {!! Form::open([
                     'method' => 'DELETE',
                     'route' => ['mbooks.destroy', $mbook->id],
                     'style' => 'float:left',
                     'onsubmit' => 'return confirm("¿Está seguro de remover este elemento?")'
                 ]) !!}
-                    <button type="submit" class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i> Remover</button>
+                    <button type="submit" onclick="event.stopPropagation()" class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i> Remover</button>
                 {!! Form::close() !!}
             </div>
         </div>
