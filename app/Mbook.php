@@ -30,7 +30,7 @@ class Mbook extends Model
 
     public function msections()
     {
-        return $this->hasMany('App\Msection');
+        return $this->hasMany('App\Msection')->ordered();
     }
 
     public static function getStates()

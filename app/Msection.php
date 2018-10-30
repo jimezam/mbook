@@ -25,7 +25,7 @@ class Msection extends Model
 
     public function msheets()
     {
-        return $this->hasMany('App\Msheet');
+        return $this->hasMany('App\Msheet')->ordered();
     }
 
     public function getMaxOrder()
