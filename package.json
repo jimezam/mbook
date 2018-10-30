@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.4.1"
+        "@fortawesome/fontawesome-free": "^5.4.1",
+        "tinymce": "^4.8.3"
     }
 }

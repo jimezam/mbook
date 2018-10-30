@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+// require('tinymce');     // jimezam
+
 window.Vue = require('vue');
 
 /**
