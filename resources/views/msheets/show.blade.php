@@ -14,18 +14,24 @@
 </p>
 
 <div class="row">
-    <div id="sections_items-list" class="col-4" style="padding-top: 5px;">
+    <div id="sections_items-list" class="col-3" style="padding-top: 5px;">
+        <p class="text-center h5">Secciones</p>
+
         @include('msections.subview_index_msections_list', 
                  ['msections' => $mbook->msections,
                   'msectionSelected' => $msection->id]) 
     </div>
 
-    <div id="sheets_items-list" class="col-4" style="padding-top: 5px;">
+    <div id="sheets_items-list" class="col-3" style="padding-top: 5px;">
+        <p class="text-center h5">Páginas</p>
+
         @include('msheets.subview_index_msheets_list', 
                  ['msheetSelected' => $msheet->id]) 
     </div>
 
-    <div class="col-4">
+    <div class="col-6">
+        <p class="text-center h5">Contenido</p>
+
         <div class="card">
             <div class="card-body">
                 {!! nl2br($msheet->contents) !!}

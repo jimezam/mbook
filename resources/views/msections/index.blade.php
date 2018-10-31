@@ -14,11 +14,13 @@
 </p>
 
 <div class="row">
-    <div id="sections_items-list" class="col-4" style="padding-top: 5px;">
+    <div id="sections_items-list" class="col-3" style="padding-top: 5px;">
+        <p class="text-center h5">Secciones</p>
+
         @include('msections.subview_index_msections_list') 
     </div>
 
-    <div class="col-8"></div>
+    <div class="col-9"></div>
 </div>
 
 <div class="row">
