@@ -72,9 +72,9 @@ $(document).ready(function() {
         // content_css: 'css/content.css',
         statusbar: true,
         inline: false,
-        plugins: 'code, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, visualblocks, wordcount',
+        plugins: 'code, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, textcolor, colorpicker, visualblocks, wordcount',
         toolbar: [
-            'styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | blockquote subscript superscript removeformat | link anchor',
+            'styleselect formatselect fontselect fontsizeselect | forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | blockquote subscript superscript removeformat | link anchor',
             'undo redo | searchreplace | bullist numlist outdent indent | table | emoticons charmap | visualblocks fullscreen code preview'
         ],
         menubar: false,
