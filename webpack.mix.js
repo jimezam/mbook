@@ -25,7 +25,7 @@ mix.js('resources/js/app.js', 'public/js')
    .sourceMaps()
    .sass('resources/sass/app.scss', 'public/css');
 
-mix.js('vendor/tinymce/tinymce/tinymce.min.js', 'public/js/tinymce');
+mix.copy('vendor/tinymce/tinymce/tinymce.min.js', 'public/js/tinymce');
 mix.copy('vendor/tinymce/tinymce/themes', 'public/js/tinymce/themes');
 mix.copy('vendor/tinymce/tinymce/skins', 'public/js/tinymce/skins');
 mix.copy('vendor/tinymce/tinymce/plugins', 'public/js/tinymce/plugins');
