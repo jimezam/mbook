@@ -40,13 +40,19 @@ if(isset($msheet))
 
 <!-- --------------------------------- -->
 
+@push('scripts')
+
+<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+
 <script>
-jQuery(document).ready(function() {
+$(document).ready(function() {
     manageColorsCustomizeState($('#customize').val());
 
     $('#customize').change(function() {
         manageColorsCustomizeState(this.value);
     });
+
+    tinymce.init({ selector:'#contents' });
 });
 
 function manageColorsCustomizeState(state)
@@ -72,5 +78,7 @@ function manageColorsCustomizeState(state)
     }
 }
 </script>
+
+@endpush
 
 <!-- --------------------------------- -->

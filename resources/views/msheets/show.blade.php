@@ -34,7 +34,7 @@
 
         <div class="card">
             <div class="card-body">
-                {!! nl2br($msheet->contents) !!}
+                {!! nl2br(strip_tags($msheet->contents)) !!}
             </div>
         </div>
 
