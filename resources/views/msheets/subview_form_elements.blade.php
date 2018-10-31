@@ -52,7 +52,41 @@ $(document).ready(function() {
         manageColorsCustomizeState(this.value);
     });
 
-    tinymce.init({ selector:'#contents' });
+    tinymce.init({ 
+        selector:'#contents',
+        schema: 'html5',
+        theme: 'modern',
+        mobile: { 
+            theme: 'mobile',
+            // plugins: [ 'autosave', 'lists', 'autolink' ],        // https://www.tiny.cloud/docs/plugins/
+            // toolbar: [ 'undo', 'bold', 'italic', 'styleselect' ]     // https://www.tiny.cloud/docs/mobile/
+        },
+        skin: 'lightgray',
+        language: 'es_MX',      // https://www.tiny.cloud/docs/general-configuration-guide/localize-your-language/
+        // width: 600,
+        // height: 300,
+        // max_height: 500,
+        // max_width: 500,
+        // min_height: 100,
+        // min_width: 400,
+        // content_css: 'css/content.css',
+        statusbar: true,
+        inline: false,
+        plugins: 'code, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, visualblocks, wordcount',
+        toolbar: [
+            'styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | blockquote subscript superscript removeformat | link anchor',
+            'undo redo | searchreplace | bullist numlist outdent indent | table | emoticons charmap | visualblocks fullscreen code preview'
+        ],
+        menubar: false,
+        browser_spellcheck: true,
+        contextmenu: false,
+    
+        // code_dialog_height: 300,
+        // code_dialog_width: 350,
+        link_context_toolbar: true,
+        // plugin_preview_height: 500,
+        // plugin_preview_width: 650,
+    });
 });
 
 function manageColorsCustomizeState(state)
