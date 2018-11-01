@@ -16,23 +16,23 @@
 
     <div class="row">
         <div id="sections" class="col-4 mbook_toc">
-        @forelse($mbook->msections as $_msection)
+        @forelse($mbook->msections as $msindex => $_msection)
             <div class="card mb-2">
                 <div class="card-header" id="section-heading-{{ $_msection->id }}">
                     <h5 class="mb-0">
                         <button class="btn btn-link" data-toggle="collapse" data-target="#section-collapse-{{ $_msection->id }}" aria-expanded="true" aria-controls="section-collapse-{{ $_msection->id }}">
-                        {{ $_msection->name }} <i class="fas fa-caret-down"></i>
+                            <strong>{{ $msindex+1 }}. {{ $_msection->name }}</strong> <i class="fas fa-caret-down"></i>
                         </button>
                     </h5>
                 </div>
                 <div id="section-collapse-{{ $_msection->id }}" class="collapse @if($_msection->id==$msection->id) show @endif" aria-labelledby="section-heading-{{ $_msection->id }}" data-parent="#sections">
                     <div class="card-body-x">
                         <ul class="list-group">
-                        @forelse($_msection->msheets as $_msheet)
+                        @forelse($_msection->msheets as $mhindex => $_msheet)
                             <li class="list-group-item @if($_msheet->id==$msheet->id) bg-info @endif">
                                 <a href="{{ route('bookviewer.view', [$code, $_msection, $_msheet]) }}" 
                                    class="@if($_msheet->id==$msheet->id) text-white @endif">
-                                    {{ $_msheet->name }}
+                                   {{ $msindex+1 }}.{{ $mhindex+1 }} {{ $_msheet->name }}
                                 </a>
                             </li>
                         @empty
