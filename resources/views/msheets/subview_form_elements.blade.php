@@ -42,8 +42,23 @@ if(isset($msheet))
 
 @push('scripts')
 
-<script src="{{ asset('js/prismjs/prism.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('js/prismjs/prism.css') }}">
+<!-- <script src="{{ asset('js/prism/prism.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('js/prism/prism.css') }}"> -->
+
+
+<link rel="stylesheet" href="{{ asset('js/highlight/styles/github.css') }}">
+<script src="{{ asset('js/highlight/highlight.pack.js') }}"></script>
+<script>
+    hljs.configure({useBR: true});
+
+    $(document).ready(function() {
+        $('code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+    // hljs.initHighlightingOnLoad();
+</script>
 
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 
@@ -66,6 +81,7 @@ $(document).ready(function() {
         },
         skin: 'lightgray',
         language: 'es_MX',      // https://www.tiny.cloud/docs/general-configuration-guide/localize-your-language/
+        block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Header 5=h5;Header 6=h6;Pre-formateado=pre;Código Fuente=code',
         // width: 600,
         // height: 300,
         // max_height: 500,
@@ -75,10 +91,10 @@ $(document).ready(function() {
         // content_css: 'css/content.css',
         statusbar: true,
         inline: false,
-        plugins: 'code, codesample, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, textcolor, colorpicker, visualblocks, wordcount',
+        plugins: 'code, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, textcolor, colorpicker, visualblocks, wordcount',
         toolbar: [
             'styleselect formatselect fontselect fontsizeselect | forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | blockquote subscript superscript removeformat | link anchor',
-            'undo redo | searchreplace | outdent indent | bullist numlist table | codesample | emoticons charmap | visualblocks fullscreen code preview'
+            'undo redo | searchreplace | outdent indent | bullist numlist table | emoticons charmap | visualblocks fullscreen code preview'
         ],
         menubar: false,
         browser_spellcheck: true,
@@ -89,51 +105,6 @@ $(document).ready(function() {
         link_context_toolbar: true,
         // plugin_preview_height: 500,
         // plugin_preview_width: 650,
-        // codesample_dialog_width: 500,
-        // codesample_dialog_height: 650,
-        codesample_content_css: "{{ asset('js/prismjs/prism.css') }}",
-        codesample_languages: [
-            {text: 'Texto plano', value: 'none'},
-            {text: 'Arduino', value: 'arduino'},
-            {text: 'ASP.Net', value: 'aspnet'},
-            {text: 'Basic', value: 'basic'},
-            {text: 'C', value: 'c'},
-            {text: 'C++', value: 'cpp'},
-            {text: 'C#', value: 'csharp'},
-            {text: 'CSS', value: 'css'},
-            {text: 'Django', value: 'django'},
-            {text: 'Docker', value: 'docker'},
-            {text: 'GameMaker', value: 'gamemakerlanguage'},
-            {text: 'Git', value: 'git'},
-            {text: 'Go', value: 'go'},
-            {text: 'GraphQL', value: 'graphql'},
-            {text: 'HTML/XML', value: 'markup'},
-            {text: 'Java', value: 'java'},
-            {text: 'JavaScript', value: 'javascript'},
-            {text: 'JSON', value: 'json'},
-            {text: 'Kotlin', value: 'kotlin'},
-            {text: 'Lua', value: 'lua'},
-            {text: 'Markdown', value: 'markdown'},
-            {text: 'Matlab', value: 'matlab'},
-            {text: 'ObjectiveC', value: 'objectivec'},
-            {text: 'PHP', value: 'php'},
-            {text: 'PL/SQL', value: 'plsql'},
-            {text: 'PowerShell', value: 'powershell'},
-            {text: 'Processing', value: 'processing'},
-            {text: 'Prolog', value: 'prolog'},
-            {text: 'Puppet', value: 'puppet'},
-            {text: 'Python', value: 'python'},
-            {text: 'R', value: 'r'},
-            {text: 'Ruby', value: 'ruby'},
-            {text: 'Scala', value: 'scala'},
-            {text: 'SmallTalk', value: 'smalltalk'},
-            {text: 'SQL', value: 'sql'},
-            {text: 'Swift', value: 'swift'},
-            {text: 'TypeScript', value: 'typescript'},
-            {text: 'VB.Net', value: 'vbnet'},
-            {text: 'YAML', value: 'yaml'},
-            {text: 'XQuery', value: 'xquery'}
-        ]
     });
 });
 

@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js"
+    "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js",
+    "/js/highlight/highlight.pack.js": "/js/highlight/highlight.pack.js"
 }

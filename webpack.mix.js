@@ -25,7 +25,16 @@ mix.js('resources/js/app.js', 'public/js')
    .sourceMaps()
    .sass('resources/sass/app.scss', 'public/css');
 
+// TinyMCE (Richtext editor)
+
 mix.copy('vendor/tinymce/tinymce/tinymce.min.js', 'public/js/tinymce');
 mix.copy('vendor/tinymce/tinymce/themes', 'public/js/tinymce/themes');
 mix.copy('vendor/tinymce/tinymce/skins', 'public/js/tinymce/skins');
 mix.copy('vendor/tinymce/tinymce/plugins', 'public/js/tinymce/plugins');
+
+// Highlight.js (Source code highlighter) - UNTESTED
+
+mix.copy('node_modules/highlight.js/styles', 'public/js/highlight/styles');
+mix.copy('node_modules/highlight.js/lib/highlight.js', 'public/js/highlight/highlight.pack.js');
+
+
