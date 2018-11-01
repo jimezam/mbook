@@ -24,9 +24,11 @@ Route::get('/browser/{source?}', 'BookBrowserController@index')
 
 // Book viewer
 
-Route::get('/viewer/{id}', 'BookViewerController@index')
+Route::get('/viewer/{code}', 'BookViewerController@index')
     ->name('bookviewer.index');
-Route::get('/viewer/{id}/metadata', 'BookViewerController@metadata')
+Route::get('/viewer/{code}/msections/{msection}/msheets/{msheet}', 'BookViewerController@view')
+    ->name('bookviewer.view');
+Route::get('/viewer/{code}/metadata', 'BookViewerController@metadata')
     ->name('bookviewer.metadata');
 
 // Authentication

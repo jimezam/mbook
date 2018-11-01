@@ -52,7 +52,7 @@
             <br> 
 
             @forelse($books as $book)
-                @include('bookbrowser.subview_book_entry');
+                @include('bookbrowser.subview_book_entry')
             @empty
                 <div class="alert alert-info" role="alert">
                     No hay libros que mostrar.
