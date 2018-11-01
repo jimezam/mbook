@@ -147,4 +147,17 @@ class Mbook extends Model
     {
         return $query->where('category_id', '=', $id);
     }
+
+    public function checkSectionBelong($msection)
+    {
+        return in_array($msection, $this->msections->all());
+    }
+
+    public function checkSheetBelong($msection, $msheet)
+    {
+        if(!$this->checkSectionBelong($msection))
+            return false;
+
+        return in_array($msheet, $msection->msheets->all());
+    }
 }
