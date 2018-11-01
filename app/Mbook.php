@@ -40,7 +40,7 @@ class Mbook extends Model
                 'inactive' => 'inactive'];
     }
 
-    public function isNew($days = 8)
+    public function isNew($days = 30)
     {
         $creation = $this->created_at;
         $now = Carbon::now();
@@ -50,7 +50,7 @@ class Mbook extends Model
         return $diff <= $days;
     }
 
-    public function isUpdated($days = 8)
+    public function isUpdated($days = 30)
     {
         $updated = $this->updated_at;
         $now = Carbon::now();
@@ -110,6 +110,17 @@ class Mbook extends Model
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
+    public function scopeOrderedByName($query)
+    {
+        return $query->orderby('name', 'asc');
+    }
+
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeLatestUpdate($query)
     {
         return $query->orderby('updated_at', 'desc');
@@ -124,5 +135,16 @@ class Mbook extends Model
     public function scopePublished($query)
     {
         return $query->where('state', '=', 'published');
+    }
+
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithCategory($query, $id)
+    {
+        return $query->where('category_id', '=', $id);
     }
 }

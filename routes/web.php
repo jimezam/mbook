@@ -11,13 +11,23 @@
 |
 */
 
-// TODO: ADD AUTHENTICATION PROTECTION TO ROUTES
-
 // Frontpage
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('bookbrowser.index'));
 });
+
+// Book browser
+
+Route::get('/browser/{source?}', 'BookBrowserController@index')
+    ->name('bookbrowser.index');
+
+// Book viewer
+
+Route::get('/viewer/{id}', 'BookViewerController@index')
+    ->name('bookviewer.index');
+Route::get('/viewer/{id}/metadata', 'BookViewerController@metadata')
+    ->name('bookviewer.metadata');
 
 // Authentication
 

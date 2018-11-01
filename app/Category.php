@@ -19,4 +19,15 @@ class Category extends Model
     {
         return $this->hasMany('App\Mbook');
     }
+
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderby('name', 'asc');
+    }
 }
