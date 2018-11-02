@@ -55,6 +55,10 @@ class BookViewerController extends Controller
         if($msection != null && $msheet != null && !$mbook->checkSheetBelong($msection, $msheet))
             abort(404, "The msection/msheet does not belong to this mbook");
 
+        // Add the themes directory to the sources of views
+
+        view()->addLocation(storage_path('app/themes'));
+
         // Render the view
 
         return view('bookviewer.view', compact('code', 'mbook', 'msection', 'msheet'));

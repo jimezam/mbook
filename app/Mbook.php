@@ -15,7 +15,7 @@ class Mbook extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id', 'name', 'shortname', 'description', 'state',
+        'category_id', 'name', 'shortname', 'description', 'state', 'theme', 'style'
     ];
 
     public function user()

@@ -31,6 +31,8 @@ class MbookCreateRequest extends FormRequest
             'description' => 'nullable',
             // 'state'       => 'required|in:["private", "published", "inactive"]',
             'state'       => 'required|in:'.implode(",", \App\Mbook::getStates()),
+            'theme'       => 'required|string|min:1|max:50',
+            'style'       => 'required|string|min:1|max:50',
         ];
     }
 }

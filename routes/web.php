@@ -31,6 +31,11 @@ Route::get('/viewer/{code}/msections/{msection}/msheets/{msheet}', 'BookViewerCo
 Route::get('/viewer/{code}/metadata', 'BookViewerController@metadata')
     ->name('bookviewer.metadata');
 
+// Themes
+ 
+Route::get('/themes/{theme}/styles', 'ThemeController@getStyles')
+    ->name('themes.styles');
+
 // Authentication
 
 Auth::routes();

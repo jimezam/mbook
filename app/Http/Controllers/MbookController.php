@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MbookCreateRequest;
 use App\Category;
 use App\Mbook;
+use App\Theme;
 
 class MbookController extends Controller
 {
@@ -32,8 +33,10 @@ class MbookController extends Controller
     {
         $categories = Category::orderby('name', 'asc') -> pluck('name', 'id');
         $states = Mbook::getStates();
+        $themes = Theme::listAvailableThemes();
+        $styles = [];
 
-        return view('mbooks.create', compact('categories', 'states'));
+        return view('mbooks.create', compact('categories', 'states', 'themes', 'styles'));
     }
 
     /**

@@ -1,3 +1,60 @@
+@push('scripts')
+
+<script>
+
+$(document).ready(function() {
+    // First time on page load.
+    setThemeStylesUpdate();
+
+    // Handling the event onChange for selector.
+    $('#theme').on('change', function() {
+        setThemeStylesUpdate();
+    });
+});
+
+function updateThemeStyles(data)
+{
+    $('#style').empty();
+
+    $.each(data, function(key, value) {
+        $('#style').append('<option value="'+ key +'">' + value + '</option>');
+    });
+}
+
+function setThemeStylesUpdate()
+{
+    var theme = $("#theme option:selected").text();
+
+    if(theme)
+    {
+        $.ajax({
+            url: '/themes/' + theme + '/styles',
+            type: "GET",
+            dataType: "json",
+
+            // beforeSend: function() {
+            //     $('#loader').css("visibility", "visible");
+            // },
+
+            success: function(data) {
+                updateThemeStyles(data);
+            },
+
+            // complete: function() { 
+            //     $('#loader').css("visibility", "hidden");
+            // }
+        });
+    } 
+    else 
+    {
+        $('#style').empty();
+    }
+}
+
+</script>
+
+@endpush
+
 <!-- --------------------------------- -->
 
 <div class="form-group">
@@ -23,6 +80,16 @@
 <div class="form-group">
     {!! Form::label('description', 'Descripción', ['class' => 'control-label']) !!}
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('theme', 'Tema', ['class' => 'control-label']) !!}
+    {!! Form::select('theme', $themes, null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('style', 'Estilo', ['class' => 'control-label']) !!}
+    {!! Form::select('style', $styles, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- --------------------------------- -->

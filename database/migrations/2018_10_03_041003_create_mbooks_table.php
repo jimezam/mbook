@@ -21,6 +21,8 @@ class CreateMbooksTable extends Migration
             $table->string('name', 100);
             $table->text('description')->nullable();
             $table->enum('state', ['private', 'published', 'inactive'])->default('private');
+            $table->string('theme', 50)->default('default');
+            $table->string('style', 50)->default('default');
             $table->timestamps();
 
             $table->foreign('user_id')
