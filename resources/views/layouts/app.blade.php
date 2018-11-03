@@ -102,12 +102,25 @@
 
             <!-- Espacio para los mensajes flash enviados entre solicitudes -->
             @if(Session::has('success'))
-                <div class="container">
-                    <article class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </article>
-                </div>
+            <div class="container">
+                <article class="alert alert-success">
+                    {{ Session::get('success') }}
+                </article>
+            </div>
             @endif
+
+            <div id="loading" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Trabajando</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p><i class="fas fa-spinner"></i> &nbsp;&nbsp;Por favor espera un momento ...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>         
 
             @yield('content')
         </main>

@@ -32,17 +32,17 @@ function setThemeStylesUpdate()
             type: "GET",
             dataType: "json",
 
-            // beforeSend: function() {
-            //     $('#loader').css("visibility", "visible");
-            // },
+            beforeSend: function() {
+                $('#loading').modal('show');
+            },
 
             success: function(data) {
                 updateThemeStyles(data);
             },
 
-            // complete: function() { 
-            //     $('#loader').css("visibility", "hidden");
-            // }
+            complete: function() { 
+                $('#loading').modal('hide');
+            }
         });
     } 
     else 
