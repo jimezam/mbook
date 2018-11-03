@@ -50,6 +50,14 @@
     <td>{!! nl2br($mbook->description) !!}</td>
   </tr>
   <tr>
+    <th scope="row">Tema</th>
+    <td>{{ $mbook->theme }}</td>
+  </tr>
+  <tr>
+    <th scope="row">Estilo</th>
+    <td>{{ $mbook->style }}</td>
+  </tr>
+  <tr>
     <th scope="row">Fecha de Creación</th>
     <td>{{ $mbook->created_at->format('d/m/Y H:i') }}</td>
   </tr>

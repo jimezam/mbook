@@ -82,8 +82,10 @@ class MbookController extends Controller
     {
         $categories = Category::orderby('name', 'asc') -> pluck('name', 'id');
         $states = Mbook::getStates();
+        $themes = Theme::listAvailableThemes();
+        $styles = [];
 
-        return view('mbooks.edit', compact('mbook', 'categories', 'states'));
+        return view('mbooks.edit', compact('mbook', 'categories', 'states', 'themes', 'styles'));
     }
 
     /**
