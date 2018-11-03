@@ -18,6 +18,13 @@ class Msection extends Model
         'name', 'description', 'order',
     ];
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['mbook'];
+
     public function mbook()
     {
         return $this->belongsTo('App\Mbook');

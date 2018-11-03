@@ -18,6 +18,13 @@ class Msheet extends Model
         'name', 'contents', 'order', 'foreground', 'background', 
     ];
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['msection'];
+
     public function msection()
     {
         return $this->belongsTo('App\Msection');
