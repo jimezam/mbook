@@ -85,7 +85,7 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <h4 class="card-title">
-                        {{ $mbook->name }}&nbsp;
+                        <a href="{{ route('bookviewer.index', $mbook->shortname) }}"  style="color: black">{{ $mbook->name }}</a> &nbsp;
                         @if($badge != null) 
                             <span class="badge badge-{{ $badgeType }}">{{ $badge }}</span>
                         @endif    

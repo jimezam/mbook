@@ -56,7 +56,7 @@
                             <!-- Home -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="{{ route('home') }}" role="button">
-                                    {{ __('Inicio') }}
+                                    {{ __('Tablero') }}
                                 </a>
                             </li>
                             <!-- mBooks -->
