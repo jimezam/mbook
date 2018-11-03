@@ -99,10 +99,10 @@ $(document).ready(function() {
         menubar: false,
         browser_spellcheck: true,
         contextmenu: false,
-    
         // code_dialog_height: 300,
         // code_dialog_width: 350,
         link_context_toolbar: true,
+        link_list: {!! json_encode($mbook->getTinyMCEStructure(), JSON_UNESCAPED_SLASHES) !!},
         // plugin_preview_height: 500,
         // plugin_preview_width: 650,
     });

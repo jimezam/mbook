@@ -160,4 +160,39 @@ class Mbook extends Model
 
         return in_array($msheet, $msection->msheets->all());
     }
+
+    public function getTinyMCEStructure()
+    {
+        $structure = [];
+
+        // [
+        //     {title: 'TinyMCE', value: 'https://www.tiny.cloud'},
+        //     {title: 'TinyMCE resources', menu: [
+        //     {title: 'TinyMCE documentation', value: 'https://www.tiny.cloud/docs/'},
+        //     {title: 'TinyMCE forum', value: 'https://community.tinymce.com/'}
+        // ]]
+
+        foreach ($this->msections as $msection)
+        {
+            $msheets = [];
+
+            if($msection->msheets->isEmpty())
+                continue;
+
+            foreach ($msection->msheets as $msheet)
+            {
+                $msheets[] = [
+                    'title' => $msheet->name,
+                    'value' => "[%URL%]/viewer/{$this->shortname}/msections/{$msection->id}/msheets/{$msheet->id}"
+                ];
+            }    
+
+            $structure[] = [
+                'title' => $msection->name,
+                'menu'  => $msheets
+            ];
+        }
+
+        return $structure;
+    }
 }

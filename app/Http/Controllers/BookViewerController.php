@@ -56,8 +56,13 @@ class BookViewerController extends Controller
             abort(404, "The msection/msheet does not belong to this mbook");
 
         // Add the themes directory to the sources of views
+        // TODO: improve the theme system
 
         view()->addLocation(storage_path('app/themes'));
+
+        // Update the contents of the msheet for web presentation
+
+        $msheet->contents = str_replace ('[%URL%]', url(''), $msheet->contents);
 
         // Render the view
 
