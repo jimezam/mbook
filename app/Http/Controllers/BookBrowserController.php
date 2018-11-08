@@ -12,8 +12,8 @@ class BookBrowserController extends Controller
     public function index(Request $request, $source = "recents")
     {
         // Get data from query string
+        //  - for recents is the category->id (optional)
         //  - for category is the category->id
-        //  - for recents is null
         //  - for keywords is the user's keywords
 
         $data = null;
@@ -22,13 +22,41 @@ class BookBrowserController extends Controller
             $data = $request->query('data');
         }
 
+        // 
+
+        $books = [];
+        $object = null;
+        $categories = [];
+
+        if($source == "recents")
+        {
+            $categories = Category::ordered()->get();
+            $books = Mbook::published()->latestUpdate();
+            
+            if($data != null)
+                $books = $books->withCategory($data);
+
+            $books = $books->paginate(10);
+        }
+        else if($source == "category")
+        {
+            
+        }
+        else if($source == "keywords")
+        {
+            
+        }
+        else   
+            $source = "error";
+
+
+
+        /*
         // Process the request according the $source
         // that can be: category, recents, keywords
 
         $books = [];
-
         $object = null;
-
         $categories = Category::ordered()->get();
 
         // Browse by recent books
@@ -48,8 +76,16 @@ class BookBrowserController extends Controller
         
         if($source == "keywords")
             $books = [];        // TODO: 
+        */
 
-        return view('bookbrowser.index', 
+        // Show error message on wrong $source
+
+        if($source == "error")
+            abort(404);
+
+        // Load the corresponding view to selected $source
+
+        return view('bookbrowser.index-'.$source, 
                     compact('source', 'data', 'object', 'categories', 'books'));
     }
 }

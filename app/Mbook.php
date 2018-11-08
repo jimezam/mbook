@@ -59,6 +59,19 @@ class Mbook extends Model
 
         return $diff <= $days;
     }
+
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUpdated($query, $days = 30)
+    {
+        $margin = Carbon::now()->subDays($days);
+
+        return $query->whereDate('updated_at', '>', $margin);
+    }
     
     /**
      * Scope a query to xxx.
