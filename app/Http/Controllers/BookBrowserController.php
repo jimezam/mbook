@@ -47,43 +47,14 @@ class BookBrowserController extends Controller
             else
                 $object = Category::findOrFail($data);
 
-            $books = Mbook::published()->withCategory($object->id)->orderedByName()->paginate(10);
+            $books = Mbook::published()->withCategory($object->id)
+                        ->orderedByName()->paginate(10);
         }
-        else if($source == "keywords")
+        else if($source == "keywords") 
         {
-            
         }
         else   
             $source = "error";
-
-
-
-        /*
-        // Process the request according the $source
-        // that can be: category, recents, keywords
-
-        $books = [];
-        $object = null;
-        $categories = Category::ordered()->get();
-
-        // Browse by recent books
-
-        if($source == "recents")
-            $books = Mbook::published()->latestUpdate()->paginate(10);
-
-        // Browse by category
-        
-        if($source == "category")
-        {
-            $object = Category::findOrFail($data);
-            $books = Mbook::published()->withCategory($data)->orderedByName()->paginate(10);
-        }
-
-        // Browse by keywords
-        
-        if($source == "keywords")
-            $books = [];        // TODO: 
-        */
 
         // Show error message on wrong $source
 
@@ -94,5 +65,29 @@ class BookBrowserController extends Controller
 
         return view('bookbrowser.index-'.$source, 
                     compact('source', 'data', 'object', 'categories', 'books'));
+    }
+
+    public function search(Request $request)
+    {
+        // Query string data is the user's keywords for book search
+
+        $data = null;
+
+        if($request->has('data')) {
+            $data = $request->query('data');
+        }
+
+        // Check if there is no keywords for search, then show error message
+
+        if($data == null)
+            return redirect()
+                ->route('bookbrowser.index', 'keywords')
+                ->with('failure', 'No se especificaron palabras clave para la búsqueda');
+
+        // If there is keywords then do the search
+
+        // TODO:
+
+        dd($data);
     }
 }

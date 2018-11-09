@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 // Book browser
 
+Route::get('/browser/search', 'BookBrowserController@search')
+    ->name('bookbrowser.search');
+
 Route::get('/browser/{source?}', 'BookBrowserController@index')
     ->name('bookbrowser.index');
 

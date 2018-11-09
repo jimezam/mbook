@@ -38,12 +38,19 @@
                 ¿Qué quieres aprender hoy?
             </p>
             
+            {!! Form::open([
+                    'route' => 'bookbrowser.search',
+                    'method' => 'GET'
+            ]) !!}
+
             <div class="input-group pt-5 mb-5">
-                <input type="text" class="form-control form-control-lg" id="keywords" placeholder="Palabras clave">
+                <input type="text" class="form-control form-control-lg" id="data" name="data" placeholder="Palabras clave">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-search"></i></div>
                 </div>
             </div>
+
+            {!! Form::close() !!}
         </div>
 
         <div class="col-2">
