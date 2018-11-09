@@ -13,7 +13,7 @@ class BookBrowserController extends Controller
     {
         // Get data from query string
         //  - for recents is the category->id (optional)
-        //  - for category is the category->id
+        //  - for category is the category->id (optional)
         //  - for keywords is the user's keywords
 
         $data = null;
@@ -22,7 +22,7 @@ class BookBrowserController extends Controller
             $data = $request->query('data');
         }
 
-        // 
+        // Load the data needed for each $source type of contents
 
         $books = [];
         $object = null;
@@ -40,7 +40,14 @@ class BookBrowserController extends Controller
         }
         else if($source == "category")
         {
-            
+            $categories = Category::ordered()->get();
+
+            if($data == null)
+                $object = $categories->first();
+            else
+                $object = Category::findOrFail($data);
+
+            $books = Mbook::published()->withCategory($object->id)->orderedByName()->paginate(10);
         }
         else if($source == "keywords")
         {
