@@ -109,6 +109,15 @@
             </div>
             @endif
 
+            @if(Session::has('failure'))
+            <div class="container">
+                <article class="alert alert-danger">
+                    {{ Session::get('failure') }}
+                </article>
+            </div>
+            @endif
+
+            <!-- Diálogo modal para mostrar la realización de una operación asíncrona -->
             <div id="loading" class="modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
