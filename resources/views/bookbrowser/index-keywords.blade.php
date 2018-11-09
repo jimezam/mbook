@@ -13,8 +13,8 @@
                 'url' => route('bookbrowser.index', 'recents'), 
                 'source' => 'recents'];
     $links[] = ['label' => 'Categorías', 
-                'url' => route('bookbrowser.index', 'categories'), 
-                'source' => 'categories'];
+                'url' => route('bookbrowser.index', 'category'), 
+                'source' => 'category'];
     @endphp
         <div class="col-12 mb-4">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

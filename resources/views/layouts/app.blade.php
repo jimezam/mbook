@@ -42,6 +42,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <!-- Home -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{ route('bookbrowser.index') }}" role="button">
+                                {{ __('Navegador') }}
+                            </a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
