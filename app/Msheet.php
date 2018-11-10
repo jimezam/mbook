@@ -53,9 +53,9 @@ class Msheet extends Model
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOrdered($query)
+    public function scopeOrdered($query, $type='asc')
     {
-        return $query->orderby('order', 'asc');
+        return $query->orderby('order', $type);
     }
 
     /**

@@ -99,7 +99,6 @@
         </nav>
 
         <main class="py-4">
-
             <!-- Espacio para los mensajes flash enviados entre solicitudes -->
             @if(Session::has('success'))
                 <div class="container">
@@ -107,6 +106,14 @@
                         {{ Session::get('success') }}
                     </article>
                 </div>
+            @endif
+
+            @if(Session::has('failure'))
+            <div class="container">
+                <article class="alert alert-danger">
+                    {{ Session::get('failure') }}
+                </article>
+            </div>
             @endif
 
             @yield('content')

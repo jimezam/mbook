@@ -208,4 +208,16 @@ class Mbook extends Model
 
         return $structure;
     }
+
+    public static function loadFrom($code)
+    {
+        $mbook = null;
+
+        if(is_numeric($code))
+            $mbook = Mbook::findOrFail($code);
+        else 
+            $mbook = Mbook::where('shortname', '=', $code)->firstOrFail();
+
+        return $mbook;
+    }
 }

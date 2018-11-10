@@ -30,9 +30,9 @@ class Msection extends Model
         return $this->belongsTo('App\Mbook');
     }
 
-    public function msheets()
+    public function msheets($orderType='asc')
     {
-        return $this->hasMany('App\Msheet')->ordered();
+        return $this->hasMany('App\Msheet')->ordered($orderType);
     }
 
     public function getMaxOrder()

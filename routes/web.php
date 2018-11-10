@@ -31,6 +31,10 @@ Route::get('/viewer/{code}', 'BookViewerController@index')
     ->name('bookviewer.index');
 Route::get('/viewer/{code}/msections/{msection}/msheets/{msheet}', 'BookViewerController@view')
     ->name('bookviewer.view');
+Route::get('/viewer/{code}/msections/{msection}/msheets/{msheet}/next', 'BookViewerController@next')
+    ->name('bookviewer.next');
+Route::get('/viewer/{code}/msections/{msection}/msheets/{msheet}/previous', 'BookViewerController@previous')
+    ->name('bookviewer.previous');
 Route::get('/viewer/{code}/metadata', 'BookViewerController@metadata')
     ->name('bookviewer.metadata');
 

@@ -21,7 +21,7 @@ class BookViewerController extends Controller
     {
         // Load the mbook from the id/shortname
 
-        $mbook = $this->getBook($code);
+        $mbook = Mbook::loadFrom($code);
 
         // Check the mbook is published or user on session is the owner
 
@@ -71,20 +71,82 @@ class BookViewerController extends Controller
 
     public function metadata(Request $request, $code)
     {
-        $mbook = $this->getBook($code);
+        $mbook = Mbook::loadFrom($code);
 
         return view('bookviewer.metadata', compact('mbook'));
     }
 
-    protected function getBook($code)
+    public function next (Request $request, $shortname, Msection $msection, Msheet $msheet) 
     {
-        $mbook = null;
+        $mbook = Mbook::loadFrom($shortname);
 
-        if(is_numeric($code))
-            $mbook = Mbook::findOrFail($code);
-        else 
-            $mbook = Mbook::where('shortname', '=', $code)->firstOrFail();
+        $nextSheet = $msection->msheets()->where('order', '=', $msheet->order + 1)->first();
 
-        return $mbook;
+        // If there is a next msheet inside the same msection
+        if($nextSheet != null)
+        {
+            return redirect()
+                ->route('bookviewer.view', [$shortname, $msection, $nextSheet]);
+        }
+
+        // There is no next msheet in this msection, check the next msections
+        // Consider empty msections to be skipped
+        $order = $msection->order;
+
+        do
+        {
+            $nextSection = $mbook->msections()->where('order', '=', ++$order)->first();
+
+            if($nextSection != null)
+            {
+                $nextSheet = $nextSection->msheets()->first();
+
+                if($nextSheet != null)
+                    return redirect()
+                        ->route('bookviewer.view', [$shortname, $nextSection, $nextSheet]);
+            }
+        } while($nextSection != null);
+
+        // There is no next msheet in this mbook
+        return redirect()
+                ->route('bookviewer.view', [$shortname, $msection, $msheet])
+                ->with('failure', 'No hay más páginas en este libro para avanzar');
+    }
+
+    public function previous (Request $request, $shortname, Msection $msection, Msheet $msheet) 
+    {
+        $mbook = Mbook::loadFrom($shortname);
+
+        $prevSheet = $msection->msheets()->where('order', '=', $msheet->order - 1)->first();
+
+        // If there is a previous msheet inside the same msection
+        if($prevSheet != null)
+        {
+            return redirect()
+                ->route('bookviewer.view', [$shortname, $msection, $prevSheet]);
+        }
+
+        // There is no previous msheet in this msection, check the previous msections
+        // Consider empty msections to be skipped
+        $order = $msection->order;
+
+        do
+        {
+            $prevSection = $mbook->msections()->where('order', '=', --$order)->first();
+
+            if($prevSection != null)
+            {
+                $prevSheet = $prevSection->msheets('desc')->first();
+
+                if($prevSheet != null)
+                    return redirect()
+                        ->route('bookviewer.view', [$shortname, $prevSection, $prevSheet]);
+            }
+        } while($prevSection != null);
+
+        // There is no previous msheet in this mbook
+        return redirect()
+                ->route('bookviewer.view', [$shortname, $msection, $msheet])
+                ->with('failure', 'No hay más páginas en este libro para retroceder');
     }
 }
