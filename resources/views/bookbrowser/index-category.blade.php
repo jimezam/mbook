@@ -3,6 +3,8 @@
 
 @section('content')
 
+@include('mbooks.bookmark_script')
+
 <div class="container">
     <!-- Source selector -->
     <div class="row">

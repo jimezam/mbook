@@ -11,9 +11,51 @@
         <div class="col-md-4">
             <h2 class="mb-4">Estoy leyendo</h2>
 
+            @forelse($mbooksReading as $mbook)
+
+            @php 
+                $badge = null;
+                $badgeType = "";
+
+                if($mbook->isUpdated())
+                {
+                    $badge = "Updated";
+                    $badgeType = "info";
+                }
+
+                if($mbook->isNew())
+                {
+                    $badge = "New";
+                    $badgeType = "warning";
+                }
+            @endphp
+
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="{{ route('bookviewer.index', $mbook->shortname) }}"  style="color: black">{{ $mbook->name }}</a> &nbsp;
+                        @if($badge != null) 
+                            <span class="badge badge-{{ $badgeType }}">{{ $badge }}</span>
+                        @endif    
+                    </h4>
+                    <div class="card-subtitle mb-2 text-muted h5">
+                        {{ $mbook->category->name }}.<br>
+                        {{ $mbook->user->name }}.<br>
+                        {{ $mbook->updated_at->diffForHumans() }}.
+                        @php $mbook->isNew() @endphp
+                    </div>
+                </div>
+            </div>
+
+            @empty
+
             <div class="alert alert-info" role="alert">
                 No hay libros que mostrar.
             </div>
+
+            @endforelse
+
+            {{ $mbooksRecent->links() }}
         </div>
         
         <!-- Writing -->

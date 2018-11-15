@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\MbookCreateRequest;
 use App\Category;
 use App\Mbook;
@@ -119,5 +120,27 @@ class MbookController extends Controller
         return redirect()
             ->route('mbooks.index')
             ->with('success', '¡Libro removido exitosamente!');
+    }
+
+    public function bookmark(Request $request, Mbook $mbook)
+    {
+        $count = $mbook->bookmarkOwners()->where('user_id', '=', Auth::id())->count();
+
+        $control = false;
+
+        if($count == 0)
+        {
+            $mbook->bookmarkOwners()->attach(Auth::user());
+            $control = true;
+        }
+        else
+        {
+            $mbook->bookmarkOwners()->detach(Auth::user());
+            $control = false;
+        }
+        
+        return response()->json([
+            'bookmark' => $control
+        ], Response::HTTP_OK);
     }
 }

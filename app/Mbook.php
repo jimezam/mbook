@@ -33,10 +33,20 @@ class Mbook extends Model
         return $this->hasMany('App\Msection')->ordered();
     }
 
+    public function bookmarkOwners()
+    {
+      return $this->belongsToMany('App\User');
+    }
+
+    public function isBookmarkedBy($user)
+    {
+        return $this->bookmarkOwners->contains($user);
+    }
+
     public static function getStates()
     {
-        return ['private' => 'private', 
-                'published' => 'published', 
+        return ['private' => 'private',
+                'published' => 'published',
                 'inactive' => 'inactive'];
     }
 
@@ -72,7 +82,7 @@ class Mbook extends Model
 
         return $query->whereDate('updated_at', '>', $margin);
     }
-    
+
     /**
      * Scope a query to xxx.
      *
@@ -104,6 +114,19 @@ class Mbook extends Model
     public function scopeNotOwnedByMe($query)
     {
         return $query->where('user_id', '<>', Auth::id());
+    }
+
+    /**
+     * Scope a query to xxx.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeBookmarkedBy($query, $user)
+    {
+        return $query->whereHas('bookmarkOwners', function ($query) use ($user) {
+            $query->where('user_id', '=', $user);
+        });
     }
 
     /**
@@ -198,7 +221,7 @@ class Mbook extends Model
                     'title' => $msheet->name,
                     'value' => "[%URL%]/viewer/{$this->shortname}/msections/{$msection->id}/msheets/{$msheet->id}"
                 ];
-            }    
+            }
 
             $structure[] = [
                 'title' => $msection->name,
@@ -215,7 +238,7 @@ class Mbook extends Model
 
         if(is_numeric($code))
             $mbook = Mbook::findOrFail($code);
-        else 
+        else
             $mbook = Mbook::where('shortname', '=', $code)->firstOrFail();
 
         return $mbook;

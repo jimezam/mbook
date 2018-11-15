@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use App\Mbook;
 
 class HomeController extends Controller
@@ -25,10 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $mbooksMine = Mbook::notOwnedByMe()->latestUpdate()->paginate(10);
+        $mbooksReading = Mbook::bookmarkedBy(Auth::id())->latestUpdate()->paginate(10);
         $mbooksMine = Mbook::latestUpdate()->paginate(10);
         $mbooksRecent = Mbook::published()->latestUpdate()->paginate(10);
 
-        return view('home', compact('mbooksMine', 'mbooksRecent'));
+        return view('home', compact('mbooksReading', 'mbooksMine', 'mbooksRecent'));
     }
 }

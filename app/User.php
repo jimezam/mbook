@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Mbook');
     }
 
+    public function booksBookmarked()
+    {
+        return $this->belongsToMany('App\Mbook');
+    }
+
     public function getNameAttribute()
     {
         return "{$this->firstname} {$this->lastname}";

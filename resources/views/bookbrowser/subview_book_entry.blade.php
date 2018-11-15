@@ -13,16 +13,25 @@
         $badge = "New";
         $badgeType = "warning";
     }
+
+    $bookmarked = $book->isBookmarkedBy(Auth::user());
 @endphp
 
 <div class="card mb-3">
     <div class="card-body">
-        <h3 class="card-title">
-            <a href="{{ route('bookviewer.index', $book->shortname) }}" style="color: black">{{ $book->name }}</a>
-            @if($badge != null) 
-                &nbsp;<span class="badge badge-{{ $badgeType }}">{{ __($badge) }}</span>
-            @endif   
-        </h3>
+        <div class="card-title d-flex justify-content-between mb-0">
+            <h3>
+                <a href="{{ route('bookviewer.index', $book->shortname) }}" style="color: black">{{ $book->name }}</a>
+                @if($badge != null) 
+                    &nbsp;<span class="badge badge-{{ $badgeType }}">{{ __($badge) }}</span>
+                @endif   
+            </h3>
+            <button id="bookmark_sign-{{ $book->id }}" type="submit" class="btn btn-link" data-toggle="tooltip" 
+                    data-html="true" title="{{ (!$bookmarked) ? 'Agregar a' : 'Remover de' }} los favoritos"
+                    onclick="bookmark({{ $book->id }})">
+                <i id="bookmark-{{ $book->id }}" class="{{ ($bookmarked) ? 'fas' : 'far' }} fa-bookmark h2"></i></a>
+            </button>
+        </div>
         <h5 class="card-subtitle mb-2">
             {{ $book->user->name }} <!-- <{{ Html::mailto($book->user->email) }}> --> <br>
             {{ $book->category->name }}

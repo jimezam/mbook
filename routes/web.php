@@ -57,8 +57,11 @@ Route::group(['middleware' => 'auth'], function()
 
     // mBooks
 
-    Route::resource('mbooks', 'MbookController');
+    Route::post('/mbooks/{mbook}/bookmark', 'MbookController@bookmark')
+        ->name('mbooks.bookmark');
 
+    Route::resource('mbooks', 'MbookController');
+        
     // mSections
 
     Route::get('/mbooks/{mbook}/msections/{msection}/moveUp', 'MsectionController@moveUp')
