@@ -36,6 +36,24 @@ class Msheet extends Model
                     ->max('order');
     }
 
+    public function markViewed($user, $status=true)
+    {
+        if($status)
+            $this->viewers()->attach($user);
+        else
+            $this->viewers()->detach($user);
+    }
+
+    public function viewers()
+    {
+      return $this->belongsToMany('App\User');
+    }
+
+    public function isViewedBy($user)
+    {
+        return $this->viewers->contains($user);
+    }
+
     /**
      * Scope a query to xxx.
      *

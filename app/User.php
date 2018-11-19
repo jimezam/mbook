@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Mbook');
     }
 
+    public function sheetsViewed()
+    {
+        return $this->belongsToMany('App\Msheet');
+    }
+
     public function getNameAttribute()
     {
         return "{$this->firstname} {$this->lastname}";

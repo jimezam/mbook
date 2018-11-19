@@ -64,6 +64,11 @@ class BookViewerController extends Controller
 
         $msheet->contents = str_replace ('[%URL%]', url(''), $msheet->contents);
 
+        // Mark viewed the msheet by current session's user
+
+        if (Auth::check())
+            $msheet->markViewed(Auth::user());
+
         // Render the view
 
         return view('bookviewer.view', compact('code', 'mbook', 'msection', 'msheet'));

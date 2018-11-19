@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\MsheetCreateRequest;
 use App\Mbook;
 use App\Msection;
@@ -167,5 +169,27 @@ class MsheetController extends Controller
         $msheet->moveDown();
 
         return redirect()->back();
+    }
+
+    public function view(Request $request, Mbook $mbook, Msection $msection, Msheet $msheet)
+    {
+        $count = $msheet->viewers()->where('user_id', '=', Auth::id())->count();
+
+        $control = false;
+
+        if($count == 0)
+        {
+            $msheet->markViewed(Auth::user());
+            $control = true;
+        }
+        else
+        {
+            $msheet->markViewed(Auth::user(), false);
+            $control = false;
+        }
+        
+        return response()->json([
+            'view' => $control
+        ], Response::HTTP_OK);
     }
 }

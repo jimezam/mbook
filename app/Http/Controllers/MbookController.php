@@ -130,12 +130,12 @@ class MbookController extends Controller
 
         if($count == 0)
         {
-            $mbook->bookmarkOwners()->attach(Auth::user());
+            $mbook->bookmark(Auth::user());
             $control = true;
         }
         else
         {
-            $mbook->bookmarkOwners()->detach(Auth::user());
+            $mbook->bookmark(Auth::user(), false);
             $control = false;
         }
         

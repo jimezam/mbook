@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth'], function()
         ->name('mbooks.msections.msheets.moveUp');
     Route::get('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/moveDown', 'MsheetController@moveDown')
         ->name('mbooks.msections.msheets.moveDown');
+    Route::post('/mbooks/{mbook}/msections/{msection}/msheets/{msheet}/view', 'MsheetController@view')
+        ->name('mbooks.msections.msheets.view');
 
     Route::resource('mbooks.msections.msheets', 'MsheetController');
 });

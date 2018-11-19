@@ -33,6 +33,14 @@ class Mbook extends Model
         return $this->hasMany('App\Msection')->ordered();
     }
 
+    public function bookmark($user, $status=true)
+    {
+        if($status)
+            $this->bookmarkOwners()->attach($user);
+        else
+            $this->bookmarkOwners()->detach($user);
+    }
+
     public function bookmarkOwners()
     {
       return $this->belongsToMany('App\User');
