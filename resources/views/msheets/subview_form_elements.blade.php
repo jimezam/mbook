@@ -91,10 +91,10 @@ $(document).ready(function() {
         // content_css: 'css/content.css',
         statusbar: true,
         inline: false,
-        plugins: 'code, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, textcolor, colorpicker, visualblocks, wordcount',
+        plugins: 'code, lists, advlist, anchor, autolink, charmap, emoticons, fullscreen, link, preview, searchreplace, table, textcolor, colorpicker, visualblocks, wordcount, media',
         toolbar: [
             'styleselect formatselect fontselect fontsizeselect | forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | blockquote subscript superscript removeformat | link anchor',
-            'undo redo | searchreplace | outdent indent | bullist numlist table | emoticons charmap | visualblocks fullscreen code preview'
+            'undo redo | searchreplace | outdent indent | bullist numlist table | media | emoticons charmap | visualblocks fullscreen code preview'
         ],
         menubar: false,
         browser_spellcheck: true,
@@ -105,6 +105,7 @@ $(document).ready(function() {
         link_list: {!! json_encode($mbook->getTinyMCEStructure(), JSON_UNESCAPED_SLASHES) !!},
         // plugin_preview_height: 500,
         // plugin_preview_width: 650,
+        media_live_embeds: true         // https://www.tiny.cloud/docs/plugins/media/
     });
 });
 
